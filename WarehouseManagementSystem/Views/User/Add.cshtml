@@ -1,0 +1,148 @@
+﻿@model WarehouseManagementSystem.ViewModels.User.Add
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#05202B" />
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="~/Content/User/Add.css" rel="stylesheet" />
+    <script src="~/Scripts/User/Add.js"></script>
+    <title>Users - Add</title>
+</head>
+<html lang="en">
+<body>
+    @Html.Partial("~/Views/Shared/NavigationBar.cshtml")
+    <main class="container-fluid row">
+        @Html.Partial("~/Views/Shared/NavigationSide.cshtml")
+        <div class="page-main-content col-sm-8 main-contents-container">
+            <div class="col-sm-12 padding-right-none">
+                <div class="grid-item height-small ">
+                    <div class="triangle"></div>
+                    <div class="page-title">
+                        <p>User Management</p>
+                        <p>Add A User</p>
+                    </div>
+                </div>
+                <div class="grid-items col-sm-12 row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="grid-item col-sm-12">
+                            <div id="FormCredentials" class="user-create-form-container col-sm-12">
+                                <div class="col-sm-12 col-md-12 col-lg-12 user-create-form">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12 create-user-navigation-option">
+                                            <p>Credentials</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="CreateUserEmailAddress">Email Address</label>
+                                        <input type="email" class="form-control" id="CreateUserEmailAddress" aria-describedby="CreateUserEmailAddressHelp" placeholder="Enter Email Address" />
+                                        <small id="CreateUserEmailAddressHelp" class="form-text text-muted">Should always be a corporate email address</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="CreateUserPassword">Password</label>
+                                        <input type="password" class="form-control" id="CreateUserPassword" placeholder="Enter password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="CreateUserConfirmPassword">Confirm Password</label>
+                                        <input type="password" class="form-control" id="CreateUserConfirmPassword" placeholder="Confirm Password">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="grid-item col-sm-12">
+                            <div id="FormPersonalInformation" class="user-create-form-container col-sm-12">
+                                <div class="col-sm-12 col-md-12 col-lg-12 user-create-form">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12 create-user-navigation-option">
+                                            <p>Personal Info</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="CreateUserFirstName">First Name</label>
+                                        <input type="text" class="form-control" id="CreateUserFirstName" placeholder="Enter First Name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="CreateUserLastName">Last Name</label>
+                                        <input type="text" class="form-control" id="CreateUserLastName" placeholder="Enter Last Name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="CreateUserHireDate">Hire Date</label>
+                                        <input type="date" class="form-control" id="CreateUserHireDate">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="CreateUserJobType">Job Type</label>
+                                        <select class="form-control" id="CreateUserJob">
+                                            <option></option>
+                                            @foreach (WarehouseManagementSystem.Models.Job job in Model.Jobs)
+                                            {
+                                                <option data-job-id="@job.Id">@job.JobDescription</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="CreateUserShift">Shift</label>
+                                        <select class="form-control" id="CreateUserShift">
+                                            <option></option>
+                                            @foreach (WarehouseManagementSystem.Models.Shift shift in Model.Shifts)
+                                            {
+                                                <option data-shift-id="@shift.Id">@shift.ShiftDescription</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <div class="grid-item col-sm-12">
+                            <div id="FormRoles" class="user-create-form-container col-sm-12">
+                                <div class="col-sm-12 col-md-12 col-lg-12 user-create-form">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12 create-user-navigation-option">
+                                            <p>Roles</p>
+                                        </div>
+                                    </div>
+                                    <div class="UserRoleTable">
+                                        @foreach (WarehouseManagementSystem.Models.Role role in Model.Roles)
+                                        {
+                                            <div class="user-role" data-role-id="@role.Id">
+                                                <div class="triangle-left small">
+
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p>@role.Name</p>
+                                                </div>
+                                                <div class="col-sm-2 user-role-checkbox">
+                                                    <div class="box unchecked" onclick="toggleCheckBox(this)">
+                                                        <div class="check">
+                                                            <i class="fas fa-check"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="user-add-container">
+                                        <button id="ButtonAddUser" type="button" class="btn btn-primary">Add User</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    @Html.Partial("~/Views/Shared/Footer.cshtml")
+</body>
+</html>

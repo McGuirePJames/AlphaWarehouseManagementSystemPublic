@@ -1,0 +1,329 @@
+﻿body {
+    max-width: 2160px;
+    background-color: white !important;
+}
+
+html .list-container .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+html .main-contents-container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+@media (min-width: 576px) {
+    main .main-contents-container {
+        display: flex;
+    }
+}
+
+.list-container {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: white;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+@media(min-width: 576px) {
+    .list-container {
+        border-right: solid;
+        border-width: 2px;
+        border-color: #F1F1F1;
+    }
+}
+
+.list-container .list-item {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: solid;
+    border-color: #F1F1F1;
+    border-width: 2px;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    min-height: 97px;
+}
+
+
+#ReportsListContainer p {
+    margin-bottom: 0;
+}
+
+.list-container .list-item-group {
+    background-color: #05202B !important;
+    display: flex;
+    justify-content: center;
+    min-height: 20px;
+    -webkit-box-shadow: 0px 5px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 5px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 5px 3px 0px rgba(0,0,0,0.75);
+    border-width: 1px;
+}
+
+    .list-container .list-item-group p {
+        font-size: 14pt;
+        font-weight: 100;
+        color: white;
+    }
+
+{
+    background-color: white;
+    padding: 0;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+@media (max-width: 576px) {
+    .main-contents-container {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        height: 100%;
+        margin-bottom: 30px;
+    }
+}
+
+p {
+    margin-bottom: 0;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.custom-input-group input {
+    border: solid;
+    border-width: 2px;
+    border-radius: 0px;
+    outline: none;
+    display: flex;
+}
+
+.custom-input-group input {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.custom-input-group #FrequencySelectDateTime {
+    padding-left: 12px;
+}
+
+.custom-input-group input:focus {
+    outline: none !important;
+    box-shadow: none;
+}
+
+#CreateNewReportContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 50px;
+    margin-top: 10px;
+}
+
+    #CreateNewReportContainer #CreateNewReport {
+        background-color: #66962d;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 145px;
+        margin-right: 20px;
+        cursor: pointer;
+        color: white;
+        border-radius: 3px;
+        font-weight: 500;
+    }
+
+        #CreateNewReportContainer #CreateNewReport .container-icon {
+            margin-left: 10px;
+        }
+
+.custom-input-group {
+    margin-top: 20px;
+    max-width: 300px;
+}
+
+
+#ScheduleCreationScheduleName {
+    color: black;
+    font-weight: 600;
+}
+
+    #ScheduleCreationScheduleName::placeholder {
+        color: #ADADAD;
+    }
+
+.container-frequency-select {
+    display: flex;
+    flex-direction: row;
+}
+
+
+    .container-frequency-select .frequency-select {
+        flex-grow: 1;
+        flex-basis: 0;
+        display: flex;
+        justify-content: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        cursor: pointer;
+        user-select: none;
+        border-top: solid;
+        border-bottom: solid;
+        border-width: 2px;
+    }
+
+        .container-frequency-select .frequency-select:nth-child(1) {
+            border-left: solid;
+            border-width: 2px;
+        }
+
+        .container-frequency-select .frequency-select:last-child {
+            border-right: solid;
+            border-width: 2px;
+        }
+
+        .container-frequency-select .frequency-select p {
+            color: #747474;
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+        }
+
+
+        .container-frequency-select .frequency-select.active {
+            border: solid;
+            border-color: #1B82C4;
+        }
+
+            .container-frequency-select .frequency-select.active p {
+                color: black;
+                font-weight: 700;
+            }
+
+
+
+
+
+
+
+
+
+.container-custom-dropdown {
+    position: relative;
+}
+
+    .container-custom-dropdown .dropdown-custom {
+        border: solid;
+        border-width: 2px;
+        display: flex;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        cursor: pointer;
+    }
+
+        .container-custom-dropdown .dropdown-custom p {
+            margin-left: 10px;
+            font-size: 12pt;
+        }
+
+
+        .container-custom-dropdown .dropdown-custom .placeholder {
+            margin-left: 10px;
+            font-size: 12pt;
+            color: #ADADAD;
+        }
+
+        .container-custom-dropdown .dropdown-custom .icon-container-down-angle {
+            margin-left: auto;
+            margin-right: 10px;
+        }
+
+
+    .container-custom-dropdown .dropdown-items-custom {
+        cursor: pointer;
+        position: absolute;
+        z-index: 2;
+    }
+
+    .container-custom-dropdown .dropdown-custom.active + .dropdown-items-custom {
+        max-height: 1000px;
+        border-bottom: solid;
+        border-left: solid;
+        border-right: solid;
+        border-width: 1px;
+        background-color: #f4f4f4;
+    }
+
+    .container-custom-dropdown .dropdown-items-custom .dropdown-item-custom:not(:nth-child(1)) {
+        border-top: solid;
+        border-width: 1px;
+    }
+
+.dropdown-items-custom .dropdown-item-custom {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    cursor: pointer;
+}
+
+    .dropdown-items-custom .dropdown-item-custom p {
+        margin-left: 10px;
+        color: #444;
+        font-weight: 500;
+    }
+
+.dropdown-items-custom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    user-select: none;
+}
+
+.dropdown-custom p {
+    color: black;
+    font-weight: 600;
+}
+
+.dropdown-custom-multi-item {
+    border: solid;
+    border-width: 1px;
+    padding: 5px 10px 5px 1px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    background-color: #05202B;
+}
+
+    .dropdown-custom-multi-item p {
+        font-size: 7pt !important;
+        color: white !important;
+    }
+
+.dropdown-custom-multi-items {
+    overflow: hidden;
+    user-select: none;
+}
+
+#ContainerUserNotificationDropdown {
+    max-width: 350px;
+}
+
+#UserNotificationDropdown {
+    padding-top: 10px;
+}
+
+@media (max-width: 320px) {
+    .flatpickr-calendar {
+        position: absolute;
+        left: 0px !important;
+    }
+}

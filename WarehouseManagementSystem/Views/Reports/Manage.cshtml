@@ -1,0 +1,164 @@
+﻿@model List<WarehouseManagementSystem.Models.Database.Table>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#05202B" />
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="~/Content/Reports/Manage.css" rel="stylesheet" />
+    <script src="~/Scripts/Reports/Manage.js"></script>
+    <title>Reports - Add</title>
+</head>
+<html lang="en">
+<body>
+    @Html.Partial("~/Views/Shared/NavigationBar.cshtml")
+    <main class="container-fluid row">
+        @Html.Partial("~/Views/Shared/NavigationSide.cshtml")
+        <div id="ReportCreationContainer" class="padding-none col-sm-8 col-md-9 main-contents-container">
+            <div id="AvailableColumns" class="col-sm-12 col-md-12 col-lg-3 padding-none">
+                <div class="title">
+                    <p>Columns</p>
+                </div>
+                @foreach (WarehouseManagementSystem.Models.Database.Table table in @Model)
+                {
+
+                    <div href="@Html.Raw(String.Format("#{0}",table.Name))" class="first-level" data-toggle="collapse" aria-expanded="false">@Html.Raw(table.Name)<i class="fa fa-caret-right" aria-hidden="true"></i> </div>
+                    <div id="@Html.Raw(String.Format("{0}", table.Name))" class="collapse second-level" data-table-id="@Html.Raw(table.Id)">
+                        @foreach (WarehouseManagementSystem.Models.Database.Table.Column column in table.Columns)
+                        {
+                            if (column.IsForeignkey && column.IsPrimaryKey)
+                            {
+                                <div class="column-container row primary-key foreign-key" data-table-id="@Html.Raw(table.Id)" data-column-Id="@Html.Raw(column.Id)">
+                                    <p id="@Guid.NewGuid().ToString()" class="column-name" draggable="true">@Html.Raw(column.Name)</p>
+                                    <div class="keys">
+                                        <div class="icon-primary-key key">
+                                            <i class="fas fa-key"></i>
+                                        </div>
+                                        <div class="icon-foreign-key key">
+                                            <i class="fas fa-key"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+                            else if (column.IsPrimaryKey)
+                            {
+                                <div class="column-container row primary-key" data-table-id="@Html.Raw(table.Id)" data-column-Id="@Html.Raw(column.Id)">
+                                    <p id="@Guid.NewGuid().ToString()" class="column-name" draggable="true">@Html.Raw(column.Name)</p>
+                                    <div class="keys">
+                                        <div class="icon-primary-key key">
+                                            <i class="fas fa-key"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+                            else if (column.IsForeignkey)
+                            {
+                                <div class="column-container row foreign-key" data-table-id="@Html.Raw(table.Id)" data-column-Id="@Html.Raw(column.Id)">
+                                    <p id="@Guid.NewGuid().ToString()" class="column-name" draggable="true">@Html.Raw(column.Name)</p>
+                                    <div class="keys">
+                                        <div class="icon-foreign-key key">
+                                            <i class="fas fa-key"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="column-container row" data-table-id="@Html.Raw(table.Id)" data-column-Id="@Html.Raw(column.Id)">
+                                    <p id="@Guid.NewGuid().ToString()" class="column-name" draggable="true">@Html.Raw(column.Name)</p>
+                                </div>
+                                <div class="keys">
+                                </div>
+                            }
+
+                        }
+                    </div>
+                }
+            </div>
+            <div id="ReportParametersContainer" class="col-sm-12 col-md-12 col-md-4 col-lg-9">
+                <div id="ReportProperties" class="col-sm-8">
+                    <div class="form-group">
+                        <label for="ReportCreationReportName">Report Name</label>
+                        <input type="text" class="form-control" id="ReportCreationReportName" placeholder="Enter report name">
+                    </div>
+                    <div class="form-group">
+                        <label for="ReportCreationReportType">Report Type</label>
+                        <select class="form-control" id="ReportCreationReportType">
+                            <option></option>
+                            <option>Excel</option>
+                            <option>PDF</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="ReportCodeContainer">
+                    <div id="ReportTypeTabContainer" class="row">
+                        <div id="ReportInteractionTab" class="report-type-tab active">
+                            <p>Interaction</p>
+                        </div>
+                        <div id="ReportCodeTab" class="report-type-tab">
+                            <p>Code</p>
+                        </div>
+                    </div>
+                    <div id="ReportCreationContainer">
+                        <div id="ReportInteractionContainer">
+                            <div class="row-column-names">
+                                <div class="column">
+                                    <p></p>
+                                </div>
+                                @{
+                                    for (char letter = 'A'; letter <= 'Z'; letter++)
+                                    {
+                                        <div class="column cell">
+                                            <p>@Html.Raw(letter)</p>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            @{
+                                for (int i = 1; i < 11; i++)
+                                {
+                                    <div class="report-row">
+                                        <div class="cell row-header">
+                                            <p>@Html.Raw(i)</p>
+                                        </div>
+                                        @{
+                                            for (int j = 1; j < 27; j++)
+                                            {
+                                                <div class="cell table-cell">
+
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div id="ReportCodeContainer" style="display: none">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="report-actions">
+                    <div class="report-action">
+                        <div id="BtnAddReport">Add</div>
+                    </div>
+                    <div class="report-action">
+                        <div id="BtnTestQuery">Test Query</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    @Html.Partial("~/Views/Shared/Footer.cshtml")
+</body>
+</html>

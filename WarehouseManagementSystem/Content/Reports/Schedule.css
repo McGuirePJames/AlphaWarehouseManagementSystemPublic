@@ -1,0 +1,397 @@
+﻿body {
+    max-width: 2160px;
+    background-color: white !important;
+}
+
+html .list-container .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+html .main-contents-container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+@media (min-width: 576px) {
+    main .main-contents-container {
+        display: flex;
+    }
+}
+
+.list-container {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: white;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+@media(min-width: 576px) {
+    .list-container {
+        border-right: solid;
+        border-width: 2px;
+        border-color: #F1F1F1;
+    }
+}
+
+.list-container .list-item {
+    /* border-bottom: solid; */
+    /* border-color: #F1F1F1 !important; */
+    /* border-width: 2px; */
+    align-items: center;
+    cursor: pointer;
+    border-bottom: solid;
+    border-width: 2px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 25px;
+    padding-right: 10px;
+}
+
+    .list-container .list-item .report-name p {
+        font-size: 14pt;
+        font-weight: 600;
+    }
+
+    .list-container .list-item .schedule-name {
+        margin-top: -5px;
+    }
+
+    .list-container .list-item p {
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+    }
+
+
+#ReportsListContainer {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+    #ReportsListContainer p {
+        margin-bottom: 0;
+    }
+
+.list-container .list-item-group {
+    background-color: #374956 !important;
+    display: flex;
+    justify-content: center;
+    min-height: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    -webkit-box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.75);
+    border-width: 0px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: solid;
+    border-width: 1px;
+}
+
+
+.list-container .list-item {
+    display: flex;
+}
+
+    .list-container .list-item .report-actions {
+        margin-left: auto;
+        margin-right: 20px;
+    }
+
+        .list-container .list-item .report-actions .report-action {
+            color: #FE6464;
+        }
+
+.list-container .list-item-group p {
+    font-size: 14pt;
+    font-weight: 100;
+    color: white;
+}
+
+.details-container {
+    background-color: white;
+    padding: 0;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+@media (max-width: 576px) {
+    .main-contents-container {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        margin-bottom: 30px;
+    }
+}
+
+.details-container p {
+    margin-bottom: 0;
+}
+
+.details-container .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.details-container .custom-input-group input {
+    border: solid;
+    border-width: 2px;
+    border-radius: 0px;
+    outline: none;
+    display: flex;
+}
+
+.details-container .custom-input-group input {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.details-container .custom-input-group #FrequencySelectDateTime {
+    padding-left: 12px;
+}
+
+.details-container .custom-input-group input:focus {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.details-container #CreateNewReportContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 50px;
+    margin-top: 10px;
+}
+
+    .details-container #CreateNewReportContainer #CreateNewReport {
+        background-color: #66962d;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 145px;
+        margin-right: 20px;
+        cursor: pointer;
+        color: white;
+        border-radius: 3px;
+        font-weight: 500;
+    }
+
+        .details-container #CreateNewReportContainer #CreateNewReport .container-icon {
+            margin-left: 10px;
+        }
+
+.details-container .custom-input-group {
+    margin-top: 20px;
+    max-width: 300px;
+}
+
+
+.details-container #ScheduleCreationScheduleName {
+    color: black;
+    font-weight: 600;
+}
+
+    .details-container #ScheduleCreationScheduleName::placeholder {
+        color: #ADADAD;
+    }
+
+.details-container .container-frequency-select {
+    display: flex;
+    flex-direction: row;
+}
+
+
+    .details-container .container-frequency-select .frequency-select {
+        flex-grow: 1;
+        flex-basis: 0;
+        display: flex;
+        justify-content: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        cursor: pointer;
+        user-select: none;
+        border-top: solid;
+        border-bottom: solid;
+        border-width: 2px;
+    }
+
+        .details-container .container-frequency-select .frequency-select:nth-child(1) {
+            border-left: solid;
+            border-width: 2px;
+        }
+
+        .details-container .container-frequency-select .frequency-select:last-child {
+            border-right: solid;
+            border-width: 2px;
+        }
+
+        .details-container .container-frequency-select .frequency-select p {
+            color: #747474;
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+        }
+
+
+        .details-container .container-frequency-select .frequency-select.active {
+            border: solid;
+            border-color: #1B82C4;
+        }
+
+            .details-container .container-frequency-select .frequency-select.active p {
+                color: black;
+                font-weight: 700;
+            }
+
+
+
+
+
+.details-container .custom-input-group #FrequencyRunImmediately {
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+
+
+
+.details-container .container-custom-dropdown {
+    position: relative;
+}
+
+    .details-container .container-custom-dropdown .dropdown-custom {
+        border: solid;
+        border-width: 2px;
+        display: flex;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        cursor: pointer;
+    }
+
+        .details-container .container-custom-dropdown .dropdown-custom p {
+            margin-left: 10px;
+            font-size: 12pt;
+        }
+
+
+        .details-container .container-custom-dropdown .dropdown-custom .placeholder {
+            margin-left: 10px;
+            font-size: 12pt;
+            color: #ADADAD;
+        }
+
+        .details-container .container-custom-dropdown .dropdown-custom .icon-container-down-angle {
+            margin-left: auto;
+            margin-right: 10px;
+        }
+
+
+    .details-container .container-custom-dropdown .dropdown-items-custom {
+        cursor: pointer;
+        position: absolute;
+        z-index: 2;
+    }
+
+
+    .details-container .container-custom-dropdown .dropdown-custom.active + .dropdown-items-custom {
+        max-height: 1000px;
+        border-left: solid;
+        border-right: solid;
+        border-width: 1px;
+        background-color: #f4f4f4;
+    }
+
+    .details-container .container-custom-dropdown .dropdown-items-custom .dropdown-item-custom:not(:nth-child(1)) {
+        border-top: solid;
+        border-width: 1px;
+    }
+
+.dropdown-items-custom .dropdown-item-custom {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    cursor: pointer;
+}
+
+    .dropdown-items-custom .dropdown-item-custom p {
+        margin-left: 10px;
+        color: #444;
+        font-weight: 500;
+    }
+
+.dropdown-items-custom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    user-select: none;
+}
+
+.dropdown-custom p {
+    color: black;
+    font-weight: 600;
+}
+
+.dropdown-custom-multi-item {
+    border: solid;
+    border-width: 1px;
+    padding: 5px 10px 5px 1px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    background-color: #05202B;
+}
+
+    .dropdown-custom-multi-item p {
+        font-size: 7pt !important;
+        color: white !important;
+    }
+
+.dropdown-custom-multi-items {
+    overflow: hidden;
+    user-select: none;
+}
+
+#ContainerUserNotificationDropdown {
+    max-width: 350px;
+}
+
+#UserNotificationDropdown {
+    padding-top: 10px;
+}
+
+@media (max-width: 320px) {
+    .flatpickr-calendar {
+        position: absolute;
+        left: 0px !important;
+    }
+}
+
+.details-container .container-custom-dropdown .dropdown-items-custom:nth-child(3) {
+    max-height: 0;
+    overflow: hidden;
+}
+
+#UserNotificationDropdownItems {
+    overflow: visible;
+    z-index: 2;
+    background-color: #f4f4f4;
+}
+
+    #UserNotificationDropdownItems .dropdown-item-custom {
+        overflow: hidden;
+        border-left: solid;
+        border-right: solid;
+        border-width: 1px;
+    }
+
+        #UserNotificationDropdownItems .dropdown-item-custom:last-child {
+            border-bottom: solid;
+            border-width: 1px;
+        }
+
+#DropdownMountPoint {
+    min-height: 77px;
+}

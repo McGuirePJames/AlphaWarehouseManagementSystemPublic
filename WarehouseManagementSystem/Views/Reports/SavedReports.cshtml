@@ -1,0 +1,135 @@
+﻿@model List<WarehouseManagementSystem.Models.Report>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#05202B" />
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="~/Content/Reports/SavedReports.css" rel="stylesheet" />
+    <script src="~/Scripts/Reports/SavedReports.js"></script>
+    <title>Reports - Saved Reports</title>
+</head>
+<html lang="en">
+<body>
+    @Html.Partial("~/Views/Shared/NavigationBar.cshtml")
+    <main class="container-fluid row">
+        @Html.Partial("~/Views/Shared/NavigationSide.cshtml")
+        <div class="main-contents-container col-md-9 col-sm-8">
+            <div class="col-md-12">
+                <div id="ReportsSavedContainer" class="col-md-12 grid-item height-large">
+                    <div class="col-md-12 header-row row">
+                        <div class="col-md-2 cell">
+                            <p>Name</p>
+                        </div>
+                        <div class="col-md-2 cell">
+                            <p>Created By</p>
+                        </div>
+                        <div class="col-md-2 cell">
+                            <p>Created On</p>
+                        </div>
+                        <div class="col-md-2 cell">
+                            <p>Modified By</p>
+                        </div>
+                        <div class="col-md-2 cell">
+
+                        </div>
+                    </div>
+                    @{
+                        foreach (WarehouseManagementSystem.Models.Report report in @Model)
+                        {
+                            <div class="col-md-12 user-row row" data-report-Id="@report.ReportID">
+                                <div class="col-md-2 cell">
+                                    <p>
+                                        @report.ReportName
+                                    </p>
+                                </div>
+                                <div class="col-md-2 cell">
+                                    <p>
+                                        @String.Format("{0} {1}", report.CreatedEmployee.FirstName, report.CreatedEmployee.LastName)
+                                    </p>
+                                </div>
+                                <div class="col-md-2 cell">
+                                    <p>
+                                        @report.CreatedDate.ToShortDateString()
+                                    </p>
+                                </div>
+                                <div class="col-md-2 cell">
+                                    <p>
+                                        @String.Format("{0} {1}", report.ModifiedEmployee.FirstName, report.ModifiedEmployee.LastName)
+                                    </p>
+                                </div>
+                                <div class="col-md-2 cell">
+                                    <p>
+                                        @report.ReportType
+                                    </p>
+                                </div>
+                                <div class="col-md-2 cell">
+                                    <div class="report-actions">
+                                        <div class="report-action btn-delete-report">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </div>
+                                        <div class="report-action btn-run-report">
+                                            <i class="fas fa-play"></i>
+                                        </div>
+                                    </div>
+                                    <div class="report-actions">
+                                        <div class="report-action btn-update-report">
+                                            <i class="fas fa-edit"></i>
+                                        </div>
+
+                                    </div>
+                                    @*<div>
+                                        <input type="button" class="report-action btn-delete-report" value="Delete" />
+                                    </div>
+                                    <div>
+                                        <input type="button" class="report-action btn-update-report" value="Update" />
+                                    </div>
+                                    <div>
+                                        <img src="~/Images/Edit Icon.png" class="report-action btn-edit-report" width="50" height="50" />
+                                    </div>*@
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </main>
+
+    @Html.Partial("~/Views/Shared/Footer.cshtml")
+    <script>
+        function ajaxRunReport(reportId) {
+            $.ajax({
+                beforeSend: function () {
+                    $('html').css('cursor', 'wait');
+                },
+                type: "POST",
+                url: '@Url.Action("HelperRunReport", "Reports")',
+                contentType: "application/json; charset=utf-8",
+                complete: function (xhr) {
+                    var startDate = $("#StartDate").val()
+                    window.location = '@Url.Action("RunReport", "Reports")'
+                        + '?reportId=' + reportId
+                    $('html').css('cursor', 'default');
+                },
+                error: function (request, textStatus, errorThrown) {
+                    if (JSON.parse(request.getResponseHeader('X-Responded-JSON')).status === 401) {
+                        location.reload()
+                    }
+                }
+            });
+            return false;
+        }
+    </script>
+</body>
+</html>
+
+

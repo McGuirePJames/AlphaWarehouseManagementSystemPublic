@@ -1,0 +1,180 @@
+﻿@model WarehouseManagementSystem.ViewModels.User.Manage
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#05202B" />
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="~/Content/User/Manage.css" rel="stylesheet" />
+    <script src="~/Scripts/User/Manage.js"></script>
+    <script>
+        let serverUserModels = @Html.Raw(Json.Encode(@Model.Users))
+    </script>
+    <title>Users - Manage</title>
+</head>
+<html lang="en">
+<body>
+    @Html.Partial("~/Views/Shared/NavigationBar.cshtml")
+    <main class="container-fluid row">
+        @Html.Partial("~/Views/Shared/NavigationSide.cshtml")
+        <div class="main-contents-container col-sm-8 col-md-9 main-contents-container">
+            <div id="UserTable" class="col-sm-6">
+                @{
+                foreach (WarehouseManagementSystem.Models.User user in @Model.Users)
+                {
+                    <div class="row user-row" data-user-id="@user.ID">
+                        <div class="user-avatar-container">
+                            @{
+                            if (user.ProfilePicturePath != "")
+                            {
+                                <img src="@user.ProfilePicturePath" />
+                        }
+                        else
+                        {
+                            <img />
+                    }
+                            }
+
+                        </div>
+                        <div class="user-information">
+                            <div class="user-name">
+                                <p>@String.Format("{0} {1}", @user.Employee.FirstName, @user.Employee.LastName) </p>
+                            </div>
+                            <div class="user-roles row">
+                                @foreach (WarehouseManagementSystem.Models.UserRoles userRole in @user.UserRoles)
+                            {
+                                <div class="user-role">
+                                    <p>@userRole.RoleName</p>
+                                </div>
+                        }
+                            </div>
+                        </div>
+                        <div class="more-actions-container">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </div>
+                    </div>
+            }
+                }
+            </div>
+            <div id="UserInformation" class="col-sm-6">
+                <div class="col-sm-12">
+                    <div class="user-detail-avatar-container">
+                        <div class="user-detail-avatar">
+                            @{
+                            if (@Model.Users[0].ProfilePicturePath != "")
+                            {
+                                <img src=@Model.Users[0].ProfilePicturePath />
+                        }
+                        else
+                        {
+                            <img />
+                    }
+                            }
+                        </div>
+                        <div class="user-detail-avatar-overlay">
+                            <input type="file" id="ProfilePictureUpload" class="user-detail-avatar-upload" style="display:none" />
+                            <label class="user-detail-avatar-upload-label" for="ProfilePictureUpload">Select picture</label>
+                        </div>
+                    </div>
+                    <div class="user-detail-user-name">
+                        <p class="user-detail-value">@Html.Raw(String.Format("{0} {1}", @Model.Users[0].Employee.FirstName, @Model.Users[0].Employee.LastName))</p>
+                    </div>
+                    <div class="user-sub-details">
+                        <div class="user-detail-user-id">
+                            <div class="row">
+                                <label>User Id</label>
+                            </div>
+                            <p id="UserDetailUserId" class="user-detail-value">@Html.Raw(@Model.Users[0].ID)</p>
+                        </div>
+                        <div class="user-detail-user-login user-detail-container" data-edit-type="text">
+                            <div class="row">
+                                <label>User Name</label>
+                                <div class="edit-container">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </div>
+                            </div>
+                            <p class="user-detail-value">@Html.Raw(@Model.Users[0].EmailAddress)</p>
+                            <input type="text" id="UserDetailEmailAddress" class="user-detail-input" data-property-name="EmailAddress" style="display:none" />
+                        </div>
+                        <div class="user-detail-user-password user-detail-container">
+                            <div class="row">
+                                <label>Password</label>
+                                <div class="edit-container">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </div>
+                            </div>
+                            <p id="UserDetailPassword" class="user-detail-value">********</p>
+                        </div>
+                        <div class="user-detail-user-hire-date user-detail-container" data-edit-type="date">
+                            <div class="row">
+                                <label>Hire Date</label>
+                                <div class="edit-container">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </div>
+                            </div>
+                            <p class="user-detail-value">@Html.Raw(@Model.Users[0].Employee.HireDate.ToString("yyyy-MM-dd"))</p>
+                            <input type="date" id="UserDetailHireDate" class="user-detail-input" data-property-name="HireDate" style="display:none" />
+                        </div>
+                        <div class="user-detail-user-job-type user-detail-container" data-edit-type="dropdown">
+                            <div class="row">
+                                <label>Job</label>
+                                <div class="edit-container">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </div>
+                            </div>
+                            <p class="user-detail-value">@Html.Raw(@Model.Users[0].Employee.Job.JobDescription)</p>
+                            <select type="dropdown" id="UserDetailJob" class="user-detail-input" data-property-name="JobDescription" style="display:none">
+                                <option></option>
+                                @foreach (WarehouseManagementSystem.Models.Job job in Model.Jobs)
+                            {
+                                <option data-job-id="@job.Id">@job.JobDescription</option>
+                        }
+                            </select>
+                        </div>
+                        <div class="user-detail-user-shift user-detail-container" data-edit-type="dropdown">
+                            <div class="row">
+                                <label>Shift</label>
+                                <div class="edit-container">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </div>
+                            </div>
+                            <p class="user-detail-value">@Html.Raw(@Model.Users[0].Employee.Shift.ShiftDescription)</p>
+                            <select type="dropdown" id="UserDetailShift" class="user-detail-input" data-property-name="ShiftDescription" style="display:none">
+                                <option></option>
+                                @foreach (WarehouseManagementSystem.Models.Shift shift in Model.Shifts)
+                            {
+                                <option data-shift-id="@shift.Id">@shift.ShiftDescription</option>
+                        }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="user-detail-user-roles user-detail-container" data-edit-type="dropdown">
+                        <div class="row">
+                            <label>User Roles</label>
+                            <div class="edit-container row">
+                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                        @foreach (WarehouseManagementSystem.Models.UserRoles role in @Model.Users[0].UserRoles)
+                    {
+                        <div class="user-detail-user-role user-detail-container">
+                            <p class="user-detail-value">@role.RoleName</p>
+                        </div>
+                }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    @Html.Partial("~/Views/Shared/Footer.cshtml")
+</body>
+</html>

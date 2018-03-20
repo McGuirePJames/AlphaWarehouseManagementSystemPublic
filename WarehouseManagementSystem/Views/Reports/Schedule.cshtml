@@ -1,0 +1,136 @@
+﻿@model WarehouseManagementSystem.ViewModels.Reports.Schedule
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#05202B" />
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+    <link href="~/Content/Reports/Schedule.css" rel="stylesheet" />
+    <script src="~/Scripts/Reports/Schedule.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <title>Reports - Schedule</title>
+</head>
+<html lang="en">
+<body>
+
+    @Html.Partial("~/Views/Shared/NavigationBar.cshtml")
+    <main class="col-12 row">
+        @Html.Partial("~/Views/Shared/NavigationSide.cshtml")
+        <div class="col-sm-8 col-md-9 main-contents-container">
+            <div id="ReportsListContainer" class="list-container col-sm-6 ">
+
+            </div>
+            <div id="ReportsDetailContainer" class="details-container col-sm-6">
+                <div id="CreateNewReportContainer">
+                    <div id="CreateNewReport">
+                        <p>Create New</p>
+                        <div class="container-icon">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div id="ReportDetails">
+                    <div class="details-title-container">
+                        <div class="custom-input-group">
+                            <label for="ScheduleCreationReportName">Schedule Name</label>
+                            <input type="text" class="form-control" id="ScheduleCreationScheduleName" placeholder="Enter report name">
+                        </div>
+                    </div>
+                    <div id="ContainerFrequencyDropdown" class="custom-input-group container-custom-dropdown">
+                        <label for="FrequencyDropdown">Report To Schedule</label>
+                        <div id="FrequencyDropdown" class="dropdown-custom">
+                            <p class="placeholder">Select a report</p>
+                            <div class="icon-container-down-angle">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <div id="FrequencyDropdownItems" class="dropdown-items-custom">
+                            @{
+                                foreach (WarehouseManagementSystem.Models.Report report in Model.Reports)
+                                {
+                                    <div class="dropdown-item-custom" data-report-Id="@Html.Raw(report.ReportID)">
+                                        <p>@Html.Raw(report.ReportName)</p>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="custom-input-group form-group">
+                        <label>Frequency</label>
+                        <div class="container-frequency-select">
+                            <div class="frequency-select active">
+                                <p id="FrequencyDaily">Daily</p>
+                            </div>
+                            <div class="frequency-select">
+                                <p id="FrequencyWeekly">Weekly</p>
+                            </div>
+                            <div class="frequency-select">
+                                <p id="FrequencyMonthly">Monthly</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-input-group">
+                        <div>
+                            <label>Start Immediately</label>
+                            <input id="FrequencyRunImmediately" type="checkbox" />
+                        </div>
+                    </div>
+                    <div class="custom-input-group">
+                        <div>
+                            <label>Start Time</label>
+                            <input id="FrequencySelectDateTime" class="flatpickr flatpickr-input" type="text" placeholder="Select Start Time..." data-id="datetime" readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div id="DropdownMountPoint">
+
+                    </div>
+                    @*<div id="ContainerUserNotificationDropdown" class="custom-input-group container-custom-dropdown">
+                            <label for="UserNotificationDropdown">Users to notify</label>
+                            <div id="UserNotificationDropdown" class="dropdown-custom">
+                                <div id="UserNotificationUsers" class="dropdown-custom-multi-items placeholder row">
+
+                                </div>
+                                <div id="UserNotificationIconDropdownDownAngle" class="icon-container-down-angle">
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+                            </div>
+                            <div id="UserNotificationDropdownItems" class="dropdown-items-custom">
+                                @{
+                                    foreach (WarehouseManagementSystem.Models.User user in Model.Users)
+                                    {
+                                        <div class="dropdown-item-custom" data-user-Id="@Html.Raw(user.ID)" data-user-email="@Html.Raw(user.EmailAddress)">
+                                            <p>@Html.Raw(user.EmailAddress)</p>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>*@
+                    <div class="custom-input-group form-group">
+                        <div>
+                            <input id="CreateScheduledReport" type="button" class="btn btn-primary" value="Create Scheduled Report" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+    @Html.Partial("~/Views/Shared/Footer.cshtml")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
+    <script src="@Url.Content("~/Scripts/Reports/Schedule.jsx")"></script>
+</body>
+</html>

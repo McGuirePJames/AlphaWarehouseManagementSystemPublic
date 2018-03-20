@@ -1,0 +1,165 @@
+﻿@model List<WarehouseManagementSystem.Models.Role>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#05202B" />
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="~/Content/Role/Manage.css" rel="stylesheet" />
+    <script src="~/Scripts/Role/Manage.js"></script>
+    <title>Roles - Manage</title>
+</head>
+<html lang="en">
+<body>
+    @{
+
+        IEnumerable<System.Security.Claims.Claim> claims = System.Security.Claims.ClaimsPrincipal.Current.Claims;
+
+        foreach (System.Security.Claims.Claim claim in claims)
+        {
+
+        }
+
+    }
+    @Html.Partial("~/Views/Shared/NavigationBar.cshtml")
+    <main class="col-12 row">
+        @Html.Partial("~/Views/Shared/NavigationSide.cshtml")
+        <div class="col-sm-8 main-contents-container">
+            <div class="container-fluid row container-grid-row">
+                <div class="container-grid col-sm-11">
+                    <div class="grid-item col-sm-12 height-small row margin-left-none action-container">
+                        <div class="col-sm-12 col-md-12 col-lg-4 max-width">
+                            <div class="col-sm-12 action">
+                                <div id="ButtonAddRole" class="row">
+                                    <div class="container-action-description">
+                                        <p>Add</p>
+                                    </div>
+                                    <div class="icon-container padding-none">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-4 max-width">
+                            <div class="col-sm-12 action">
+                                <div id="ButtonSaveRoles" class="row">
+                                    <div class="container-action-description">
+                                        <p>Save</p>
+                                    </div>
+                                    <div class="icon-container padding-none">
+                                        <i class="far fa-save"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-4 action">
+                            <div class="col-sm-12 padding-none">
+                                <input type="text" class="form-control" placeholder="Search for...">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid row container-grid-row">
+                <div class="container-grid col-sm-12">
+                    <div class="grid-item col-sm-12 height-large">
+                        <div id="RoleTable" class="col-sm-12">
+                            <div class="table-header-row row">
+                                <div class="cell cell-header col-sm-4">
+
+                                </div>
+                                <div class="cell cell-header col-sm-2">
+                                    <p>Create</p>
+                                </div>
+                                <div class="cell cell-header col-sm-2">
+                                    <p>Read</p>
+                                </div>
+                                <div class="cell cell-header col-sm-2">
+                                    <p>Update</p>
+                                </div>
+                                <div class="cell cell-header col-sm-2">
+                                    <p>Delete</p>
+                                </div>
+                            </div>
+                            @{
+                                foreach (WarehouseManagementSystem.Models.Role role in @Model)
+                                {
+                                    <div href=@Html.Raw(String.Format("#{0}",role.Id)) class="cell col-sm-12 row level-one" data-toggle="collapse" aria-expanded="true">
+                                        <div class="col-sm-12 col-md-6 container-description">
+                                            <p class="padding-left-none">@Html.Raw(role.Name)</p>
+                                            <i class="fa fa-caret-right"></i>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 row row-action-container">
+                                            <i class="fas fa-check"></i>
+                                            <i class="far fa-trash-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div id=@Html.Raw(role.Id) class="row navigation-dropdown collapse show">
+                                        @foreach (WarehouseManagementSystem.Models.Role.PermissionGroup permissionGroup in role.PermissionGroups)
+                                        {
+
+                                            <div class="col-12 col-sm-12 level-two cell description row padding-left-none" data-id=@permissionGroup.Id>
+                                                <p class="col-sm-12 col-md-12 col-lg-4">@permissionGroup.Description</p>
+                                                @foreach (WarehouseManagementSystem.Models.Role.PermissionGroup.PermissionGroupDetails permissionGroupDetails in permissionGroup.PermissionGroupsDetails)
+                                                {
+                                                    <div class="col-12 col-sm-12 col-md-12 col-lg-2 container-slide">
+                                                        @if (permissionGroupDetails.Allowed == 0)
+                                                        {
+
+                                                            <div class="slide off" data-id=@permissionGroupDetails.Id>
+                                                                <div class="slider">
+
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="slide on" data-id=@permissionGroupDetails.Id>
+                                                                <div class="slider">
+
+                                                                </div>
+                                                            </div>
+                                                        }
+
+                                                    </div>
+                                                }
+                                            </div>
+
+                                        }
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    @Html.Partial("~/Views/Shared/Footer.cshtml")
+    <div id="ConfirmationPopUp" class="container-fluid" style="display:none">
+        <div class="hide-icon col-sm-12">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="message">
+            <p>Are you sure you want to delete this role?</p>
+        </div>
+        <div class="container-answer row">
+            <div class="yes col-sm-6">
+                <p>Yes</p>
+            </div>
+            <div class="no col-sm-6">
+                <p>No</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

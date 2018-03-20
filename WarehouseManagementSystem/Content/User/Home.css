@@ -1,0 +1,106 @@
+﻿main {
+    height: 80vh;
+}
+
+.navigation-options {
+    margin-top: 20px;
+}
+
+@media (min-width:768px) {
+    .navigation-options {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-width:767px) {
+    .navigation-option-container:nth-child(3) {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width:575px) {
+    .navigation-option-container:not(:first-child) {
+        margin-top: 20px;
+    }
+
+    main {
+        height: 120vh;
+    }
+}
+
+.navigation-option {
+    border: solid;
+    min-height: 350px;
+    cursor: pointer;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.navigation-option-icon-container {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.navigation-option-title-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: solid;
+    border-color: black;
+}
+
+.navigation-option-description-container {
+    height: 166px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+    .navigation-option-description-container p {
+        font-size: 18pt;
+    }
+
+.navigation-options .col-lg-3 {
+    max-width: 500px;
+}
+
+.navigation-option-container .navigation-option-icon-container i {
+    color: white;
+}
+
+.navigation-option-title-container, .navigation-option-description-container {
+    background-color: #114458;
+}
+
+    .navigation-option-title-container, .navigation-option-description-container p {
+        color: white;
+    }
+
+.navigation-option-container:nth-child(1) .navigation-option-icon-container {
+    background-color: #E54357;
+}
+
+.navigation-option-container:nth-child(2) .navigation-option-icon-container {
+    background-color: #F4833B;
+}
+
+.navigation-option-container:nth-child(3) .navigation-option-icon-container {
+    background-color: #95C866;
+}
+
+a {
+    color: black;
+}
+
+    a:hover {
+        text-decoration: none !important;
+        color: black !important;
+    }
+    .navigation-option-navigation-icon{
+        color: white;
+    }
+    .navigation-option-description-container p{
+        font-weight: 200;
+    }
+.navigation-option {
+    display: inline-block !important;
+}

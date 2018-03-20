@@ -1,0 +1,115 @@
+﻿
+.navigation-options {
+    margin-top: 20px;
+}
+
+@media (min-width:768px) {
+    .navigation-options {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-width:767px) {
+    .navigation-option-container:nth-child(3) {
+        margin-top: 20px;
+    }
+
+    .navigation-option-container:nth-child(4) {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width:575px) {
+    .navigation-option-container:not(:first-child) {
+        margin-top: 20px;
+    }
+
+    main {
+        height: auto;
+    }
+}
+
+.navigation-option {
+    border: solid;
+    max-width: 500px;
+    min-height: 350px;
+    cursor: pointer;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.navigation-option-icon-container {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.navigation-option-title-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: solid;
+    border-color: black;
+}
+
+.navigation-option-description-container {
+    min-height: 166px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+
+    .navigation-option-description-container p {
+        font-size: 18pt;
+        font-weight: 300;
+        margin-bottom: 0;
+    }
+
+.navigation-options .col-lg-3 {
+    max-width: 500px;
+}
+
+.navigation-option-container .navigation-option-icon-container i {
+    color: white;
+}
+
+.navigation-option-title-container, .navigation-option-description-container {
+    background-color: #114458;
+}
+
+    .navigation-option-title-container, .navigation-option-description-container p {
+        color: white;
+    }
+
+.navigation-option-container:nth-child(1) .navigation-option-icon-container {
+    background-color: #E54357;
+}
+
+.navigation-option-container:nth-child(2) .navigation-option-icon-container {
+    background-color: #F4833B;
+}
+
+.navigation-option-container:nth-child(3) .navigation-option-icon-container {
+    background-color: #95C866;
+}
+
+.navigation-option-container:nth-child(4) .navigation-option-icon-container {
+    background-color: #8443c3;
+}
+
+a {
+    color: black;
+}
+
+    a:hover {
+        text-decoration: none !important;
+        color: black !important;
+    }
+
+.navigation-option-navigation-icon {
+    color: white;
+}
+
+.navigation-option {
+    display: inline-block;
+}

@@ -1,0 +1,28 @@
+﻿main.container-fluid {
+    height: 89vh;
+    display: flex;
+    justify-content: center;
+    max-width: 1000px;
+}
+
+.container-form {
+    margin-top: 20%;
+}
+
+.container-alerts {
+    margin-top: 20px;
+    position: relative;
+}
+
+    .container-alerts .alert {
+        position: absolute;
+    }
+
+        .container-alerts .alert:empty {
+            display: none;
+        }
+
+.center-component {
+    display: flex;
+    justify-content: center;
+}

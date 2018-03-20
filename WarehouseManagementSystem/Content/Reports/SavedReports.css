@@ -1,0 +1,139 @@
+﻿.header-row {
+    background-color: red;
+}
+
+    .header-row .col-md-2 {
+        /* background-color: white; */
+    }
+
+        .header-row .col-md-2 p {
+            font-size: 16pt;
+            font-weight: 500;
+            /*background-color: white; */
+        }
+
+#ReportsSavedContainer {
+    margin-top: 20px;
+    max-width: 1920px;
+}
+
+.grid-item {
+    min-height: 700px;
+    background-color: white;
+    -webkit-box-shadow: 3px 3px 17px 0 rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 17px 0 rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 17px 0 rgba(0,0,0,0.75);
+}
+
+
+#ReportsSavedContainer {
+    margin-top: 20px;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+    #ReportsSavedContainer div {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #ReportsSavedContainer p {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    #ReportsSavedContainer .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #ReportsSavedContainer .header-row {
+        margin-right: 0;
+        margin-left: 0;
+        border-bottom: solid;
+        background-color: #06202A;
+        -webkit-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.75);
+    }
+
+        #ReportsSavedContainer .header-row p {
+            font-size: 12pt;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            margin-left: 20px;
+            color: white;
+        }
+
+    #ReportsSavedContainer .user-row {
+        border-bottom: solid;
+        border-bottom-color: #DFDFDF;
+        border-bottom-width: 2px;
+        border-left: solid;
+        border-left-width: 3px;
+        border-left-color: #0073AC;
+    }
+
+        #ReportsSavedContainer .user-row .report-actions {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            margin-right: 30px;
+        }
+
+            #ReportsSavedContainer .user-row .report-actions .report-action {
+                width: 30px;
+            }
+
+                #ReportsSavedContainer .user-row .report-actions .report-action:nth-child(2) {
+                    margin-left: 0px;
+                }
+
+                #ReportsSavedContainer .user-row .report-actions .report-action svg {
+                    cursor: pointer;
+                    color: #666;
+                }
+
+        #ReportsSavedContainer .user-row .cell p {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-size: 12pt;
+            padding-left: 20px;
+            word-wrap: break-word !important;
+            color: #666;
+        }
+
+
+        #ReportsSavedContainer .user-row .report-action {
+            width: 70px;
+            height: 25px;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        #ReportsSavedContainer .user-row .btn-delete-report {
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        #ReportsSavedContainer .user-row .btn-update-report {
+            margin-bottom: 10px;
+        }
+
+        #ReportsSavedContainer .user-row .report-action {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0px;
+            border: solid;
+            border-width: 2px;
+            height: 30px;
+            width: 30px;
+            border-radius: 5px;
+            border-color: #666;
+        }
+
+            #ReportsSavedContainer .user-row .report-action:nth-child(2) {
+                margin-left: 10px !important;
+            }

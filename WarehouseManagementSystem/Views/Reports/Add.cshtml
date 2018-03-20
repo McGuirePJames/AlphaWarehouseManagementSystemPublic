@@ -1,0 +1,253 @@
+﻿@model List<WarehouseManagementSystem.Models.Database.Table>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#05202B" />
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="~/Content/Reports/Add.css" rel="stylesheet" />
+    <script src="~/Scripts/Reports/Add.js"></script>
+
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <title>Reports - Add</title>
+    <script>
+        var serverTableModels = @Html.Raw(Json.Encode(@Model))
+    </script>
+</head>
+<html lang="en">
+<body>
+    @Html.Partial("~/Views/Shared/NavigationBar.cshtml")
+    <main class="container-fluid row">
+        @Html.Partial("~/Views/Shared/NavigationSide.cshtml")
+        <div id="ReportCreationContainer" class="padding-none col-sm-8 col-md-9 main-contents-container">
+            <div id="AvailableColumns" class="col-sm-12 col-md-12 col-lg-4 padding-none">
+                <div class="title">
+                    <p>Columns</p>
+                </div>
+                @foreach (WarehouseManagementSystem.Models.Database.Table table in @Model)
+                {
+
+                    <div href="@Html.Raw(String.Format("#{0}",table.Name))" class="first-level" data-toggle="collapse" aria-expanded="false">@Html.Raw(table.Name)<i class="fa fa-caret-right" aria-hidden="true"></i> </div>
+                    <div id="@Html.Raw(String.Format("{0}", table.Name))" class="collapse second-level" data-table-id="@Html.Raw(table.Id)" data-table-name="@Html.Raw(table.Name)">
+                        @foreach (WarehouseManagementSystem.Models.Database.Table.Column column in table.Columns)
+                        {
+                            if (column.IsForeignkey && column.IsPrimaryKey)
+                            {
+                                <div class="column-container row primary-key foreign-key" data-table-id="@Html.Raw(table.Id)" data-table-name="@Html.Raw(table.Name)" data-column-Id="@Html.Raw(column.Id)" data-column-Name="@Html.Raw(column.Name)" data-parent-table-id="@Html.Raw(column.ForeignKey.ParentTable.Id)" data-parent-table-name="@Html.Raw(column.ForeignKey.ParentTable.Name)" data-child-table-id="@Html.Raw(column.ForeignKey.ChildTable.Id)" data-child-table-name="@Html.Raw(column.ForeignKey.ChildTable.Name)" data-child-table-column-id="@Html.Raw(column.ForeignKey.ChildColumnId)" data-parent-table-column-id="@Html.Raw(column.ForeignKey.ParentColumnId)">
+                                    <p id="@Guid.NewGuid().ToString()" class="column-name" draggable="true">@Html.Raw(column.Name)</p>
+                                    <div class="keys">
+                                        <div class="icon-primary-key key">
+                                            <i class="fas fa-key"></i>
+                                        </div>
+                                        <div class="icon-foreign-key key">
+                                            <i class="fas fa-key"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+                            else if (column.IsPrimaryKey)
+                            {
+                                <div class="column-container row primary-key" data-table-id="@Html.Raw(table.Id)" data-table-name="@Html.Raw(table.Name)" data-column-Id="@Html.Raw(column.Id)" data-column-Name="@Html.Raw(column.Name)">
+                                    <p id="@Guid.NewGuid().ToString()" class="column-name" draggable="true">@Html.Raw(column.Name)</p>
+                                    <div class="keys">
+                                        <div class="icon-primary-key key">
+                                            <i class="fas fa-key"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+                            else if (column.IsForeignkey)
+                            {
+                                <div class="column-container row foreign-key" data-table-id="@Html.Raw(table.Id)" data-table-name="@Html.Raw(table.Name)" data-column-Id="@Html.Raw(column.Id)" data-column-Name="@Html.Raw(column.Name)" data-parent-table-id="@Html.Raw(column.ForeignKey.ParentTable.Id)" data-parent-table-name="@Html.Raw(column.ForeignKey.ParentTable.Name)" data-child-table-id="@Html.Raw(column.ForeignKey.ChildTable.Id)" data-child-table-name="@Html.Raw(column.ForeignKey.ChildTable.Name)" data-child-table-column-id="@Html.Raw(column.ForeignKey.ChildColumnId)" data-parent-table-column-id="@Html.Raw(column.ForeignKey.ParentColumnId)">
+                                    <p id="@Guid.NewGuid().ToString()" class="column-name" draggable="true">@Html.Raw(column.Name)</p>
+                                    <div class="keys">
+                                        <div class="icon-foreign-key key">
+                                            <i class="fas fa-key"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="column-container row" data-table-id="@Html.Raw(table.Id)" data-table-name="@Html.Raw(table.Name)" data-column-Id="@Html.Raw(column.Id)" data-column-Name="@Html.Raw(column.Name)">
+                                    <p id="@Guid.NewGuid().ToString()" class="column-name" draggable="true">@Html.Raw(column.Name)</p>
+                                </div>
+                                <div class="keys">
+                                </div>
+                            }
+
+                        }
+                    </div>
+                }
+            </div>
+            <div id="ReportParametersContainer" class="col-sm-12 col-md-12 col-md-4 col-lg-8">
+                <div id="ReportProperties" class="col-sm-8">
+                    <div class="form-group">
+                        <label for="ReportCreationReportName">Report Name</label>
+                        <input type="text" class="form-control" id="ReportCreationReportName" placeholder="Enter report name">
+                    </div>
+                    <div class="form-group">
+                        <label for="ReportCreationReportType">Report Type</label>
+                        <select class="form-control" id="ReportCreationReportType">
+                            <option></option>
+                            <option>Excel</option>
+                            <option>PDF</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="ReportCodeContainer">
+                    <div id="ReportTypeTabContainer" class="row">
+                        <div id="ReportInteractionTab" class="report-type-tab active">
+                            <p>Interaction</p>
+                        </div>
+                        <div id="ReportCodeTab" class="report-type-tab">
+                            <p>Code</p>
+                        </div>
+                    </div>
+                    <div id="ReportCreationContainer">
+                        <div id="ReportInteractionContainer">
+                            <div class="row-column-names">
+                                <div class="column">
+                                    <p></p>
+                                </div>
+                                @{
+                                    for (char letter = 'A'; letter <= 'Z'; letter++)
+                                    {
+                                        <div class="column cell">
+                                            <p>@Html.Raw(letter)</p>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            @{
+                                for (int i = 1; i < 11; i++)
+                                {
+                                    <div class="report-row">
+                                        <div class="cell row-header">
+                                            <p>@Html.Raw(i)</p>
+                                        </div>
+                                        @{
+                                            for (int j = 1; j < 27; j++)
+                                            {
+                                                <div class="cell table-cell">
+
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div id="ReportCode" style="display: none">
+                            <div id="ToolBar" class="ql-toolbar ql-snow">
+                                <span class="ql-formats">
+                                    <button type="button" class="ql-code-block">
+                                        <svg viewBox="0 0 18 18">
+                                            <polyline class="ql-even ql-stroke" points="5 7 3 9 5 11">
+                                            </polyline>
+                                            <polyline class="ql-even ql-stroke" points="13 7 15 9 13 11">
+                                            </polyline>
+                                            <line class="ql-stroke" x1="10" x2="8" y1="5" y2="13">
+                                            </line>
+                                        </svg>
+                                    </button>
+                                </span>
+                            </div>
+                            <div id="ReportCodeEditor">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="report-actions">
+                    <div class="report-action">
+                        <div id="BtnAddReport">Save</div>
+                    </div>
+                    <div class="report-action">
+                        <div id="BtnTestQuery">Test Query</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    @Html.Partial("~/Views/Shared/Footer.cshtml")
+    <div id="JoinSelector" data-foreign-keys="" style="display:none">
+        <div class="header">
+            <div class="title">
+                <p>Confirm Table To Join</p>
+            </div>
+            <div class="container-icon-close">
+                <i class="fas fa-times"></i>
+            </div>
+
+        </div>
+        <div class="join-information">
+            <div class="arrow arrow-left">
+                <i class="fas fa-angle-left fa-2x"></i>
+            </div>
+            <div class="join-table-information">
+                <p id="JoinTable">Join Table</p>
+                <p id="JoinColumn">Join Column</p>
+            </div>
+            <div class="arrow arrow-left">
+                <i class="fas fa-angle-right fa-2x"></i>
+            </div>
+        </div>
+        <div class="container-confirm" data-foreign-key="">
+            <p>Accept</p>
+        </div>
+    </div>
+    <script>
+        hljs.configure({
+            languages: ['javascript', 'ruby', 'python', 'sql']
+        });
+
+        var quill = new Quill('#ReportCodeEditor', {
+        modules: {
+            syntax: true,        
+            toolbar: '#ToolBar'
+        },
+            theme: 'snow'
+        });
+
+        function ajaxTestQuery(sqlQuery) {
+            $.ajax({
+                beforeSend: function () {
+                    $('html').css('cursor', 'wait');
+                },
+                type: "POST",
+                url: '@Url.Action("HelperTestQuery", "Reports")',
+                contentType: "application/json; charset=utf-8",
+                complete: function (xhr) {
+                    var startDate = $("#StartDate").val()
+                    window.location = '@Url.Action("TestQuery", "Reports")'
+                        + '?sqlQuery=' + sqlQuery
+                    $('html').css('cursor', 'default');
+                },
+                error: function (request, textStatus, errorThrown) {
+                    if (JSON.parse(request.getResponseHeader('X-Responded-JSON')).status === 401) {
+                        location.reload()
+                    }
+                }
+            });
+            return false;
+        }
+    </script>
+</body>
+
+</html>

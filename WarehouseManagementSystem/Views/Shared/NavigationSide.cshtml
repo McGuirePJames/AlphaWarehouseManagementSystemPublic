@@ -1,0 +1,68 @@
+﻿<link href="~/Content/Shared/NavigationSide.css" rel="stylesheet" />
+<script src="~/Scripts/Shared/NavigationSide.js"></script>
+
+<div class="col-sm-4 col-md-3 navigation-menu-side">
+    <div id="HomeNaivgationMenu" href="#HomeSubNavigationMenu" class="list-group-item selection-header first-level section-navigation-item" data-toggle="collapse" aria-expanded="true">
+        <i class="fas fa-home navigation-icon"></i>
+        Home
+        <i class="fa fa-caret-right" aria-hidden="true"></i> 
+        <div class="pin-toggle-container">
+            <i class="fas fa-thumbtack" data-fa-transform="shrink-6"></i>
+        </div>
+    </div>
+    <div id="HomeSubNavigationMenu" class="row collapse show navigation-dropdown second-level" style="">
+        <div class="col-12 col-sm-12 selection-item">
+            <div class="section-navigation-item second-level">
+                <div id="UserManagementNavigationMenu" data-location="User/Home" href="#UserManagementSubNavigationMenu" class="list-group-item selection-header selection-item navigation-item section-navigation-item" data-toggle="collapse" aria-expanded="true"><i class="fas fa-user navigation-icon"></i>Users<i class="fa fa-caret-right" aria-hidden="true"></i> </div>
+                <div id="UserManagementSubNavigationMenu" class="row collapse show navigation-dropdown third-level" style="">
+                    <a class="col-12 col-sm-12 selection-item navigation-item" data-location="User/Add" href="/User/Add/">
+                        <p class="section-navigation-item section-navigation-item">Add</p>
+                    </a>
+                    <a class="col-12 col-sm-12 selection-item navigation-item" data-location="User/Manage" href="/User/Manage/">
+                        <p class="section-navigation-item section-navigation-item">Manage</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 selection-item">
+            <div class="section-navigation-item second-level">
+                <div id="RoleNavigationMenu" href="#RoleNavigationSubMenu" class="list-group-item selection-header section-navigation-item" data-toggle="collapse" aria-expanded="true"><i class="far fa-address-card"></i>Roles<i class="fa fa-caret-right" aria-hidden="true"></i> </div>
+                <div id="RoleNavigationSubMenu" class="row collapse show navigation-dropdown third-level" style="">
+                    <a class="col-12 col-sm-12 selection-item navigation-item" data-location="Roles/Manage" href="/Roles/Manage/">
+                        <p class="section-navigation-item section-navigation-item">Manage</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 selection-item">
+            <div class="section-navigation-item second-level">
+                <div id="DataEntryNavigationMenu" href="#DataEntryNavigationSubMenu" class="list-group-item selection-header section-navigation-item" data-toggle="collapse" aria-expanded="true"><i class="fas fa-database navigation-icon"></i>Data Entry<i class="fa fa-caret-right" aria-hidden="true"></i> </div>
+                <div id="DataEntryNavigationSubMenu" class="row collapse show navigation-dropdown third-level" style="">
+                    <div class="col-12 col-sm-12 selection-item">
+                        <p class="section-navigation-item section-navigation-item">Products</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 selection-item">
+            <div class="section-navigation-item second-level">
+                <div id="ReportNavigationMenu" href="#ReportNavigationSubMenu" class="list-group-item selection-header section-navigation-item" data-toggle="collapse" aria-expanded="true"><i class="fas fa-chart-bar navigation-icon"></i>Reports<i class="fa fa-caret-right" aria-hidden="true"></i> </div>
+                <div id="ReportNavigationSubMenu" class="row collapse show navigation-dropdown third-level" style="">
+                    <a class="col-12 col-sm-12 selection-item navigation-item" data-location="Reports/Add" href="/Reports/Add/">
+                        <p class="section-navigation-item section-navigation-item">Create</p>
+                    </a>
+                    @*<a class="col-12 col-sm-12 selection-item navigation-item" data-location="Reports/Manage" href="#">
+                        <p class="section-navigation-item section-navigation-item">Manage</p>
+                    </a>*@
+                    <a class="col-12 col-sm-12 selection-item navigation-item" data-location="Reports/SavedReports" href="/Reports/SavedReports/">
+                        <p class="section-navigation-item section-navigation-item">Manage</p>
+                    </a>
+                    <a class="col-12 col-sm-12 selection-item navigation-item" data-location="Reports/Schedule" href="/Reports/Schedule/">
+                        <p class="section-navigation-item section-navigation-item">Schedule</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
