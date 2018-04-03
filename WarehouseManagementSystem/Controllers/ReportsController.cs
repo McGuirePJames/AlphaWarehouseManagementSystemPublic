@@ -13,10 +13,12 @@ namespace WarehouseManagementSystem.Controllers
 {
     public class ReportsController : Controller
     {
-        public ActionResult Index()
+        [Authorize]
+        public ActionResult Home()
         {
             return View();
         }
+        [AuthorizeUser(Webpage = "Reports:Create", ValidPermissionType = "Read")]
         public async Task<ActionResult> Add()
         {
             List<Models.Database.Table> tables = await Models.Database.Table.GetTables();
@@ -54,15 +56,18 @@ namespace WarehouseManagementSystem.Controllers
             }
             return View(tables);
         }
+        [AuthorizeUser(Webpage = "Reports:Manage", ValidPermissionType = "Read")]
         public ActionResult Manage()
         {
             return View();
         }
+        [Authorize]
         public async Task<ActionResult> SavedReports()
         {
             List<Models.Report> reportList = await Models.Report.GetReports();
             return View(reportList);
         }
+        [AuthorizeUser(Webpage = "Reports:Schedule", ValidPermissionType = "Read")]
         public async Task<ActionResult> Schedule()
         {
             List<Models.Report> reports = await Models.Report.GetReports();
@@ -71,13 +76,10 @@ namespace WarehouseManagementSystem.Controllers
             viewModelReports.Reports = reports;
             viewModelReports.Users = users;
 
-            //Models.HangfireModel.RemoveJob("ID");
-            //Models.HangfireModel.CreateUserDefinedReport(1, Models.Report.Schedule.Frequency.Minutely);
-
-
             return View(viewModelReports);
         }
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult> CreateDelayedJob(Models.Report.Schedule schedule)
         {
             Models.Response responseCreateSchedule = await Models.Report.Schedule.CreateSchedule(schedule);
@@ -97,6 +99,7 @@ namespace WarehouseManagementSystem.Controllers
 
         }
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult> CreateScheduledReport(Models.Report.Schedule schedule)
         {
             //creates entry in databse to keep track of scheduled jobs
@@ -110,12 +113,19 @@ namespace WarehouseManagementSystem.Controllers
 
             if (responseCreateSchedule.Success)
             {
-                Models.HangfireModel.CreateScheduledReport(schedule.HangfireJobId, Convert.ToInt32(responseCreateSchedule.Message), schedule._Frequency.ToString());
+                Models.HangfireModel.CreateScheduledReport(schedule.HangfireJobId, Convert.ToInt32(responseCreateSchedule.Message), schedule._Frequency.ToString(), schedule.StartDate);
                 return Json(new { success = true, responseText = scheduleId.ToString() });
             }
             return Json(new { success = false, responseText = responseCreateSchedule.Message });
         }
+        [HttpPost]
+        [Authorize]
+        public async Task RunScheduledReport(int scheduleId)
+        {
+            await Models.HangfireModel.RunScheduledReport(scheduleId);
+        }
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult> GetUsers()
         {
             List<Models.User> users = await Models.User.GetUsers();
@@ -123,6 +133,7 @@ namespace WarehouseManagementSystem.Controllers
             return Json(users, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult> DeleteReport(int reportID)
         {
 
@@ -135,11 +146,13 @@ namespace WarehouseManagementSystem.Controllers
             return Json(new { success = false, responseText = response.Message });
         }
         [HttpPost]
+        [Authorize]
         public ActionResult HelperTestQuery()
         {
             //this method is just to make the ajax call for RunReport function work with downloadable excel files
             return Json(new { success = true });
         }
+        [Authorize]
         public async Task<ActionResult> TestQuery(string sqlQuery)
         {
             List<Models.Excel.Workbook.Worksheet.Row> results = await Models.Database.RunQuery(sqlQuery);
@@ -156,11 +169,13 @@ namespace WarehouseManagementSystem.Controllers
             return File(stream, contentType, fileName);
         }
         [HttpPost]
+        [Authorize]
         public ActionResult HelperRunReport()
         {
             //this method is just to make the ajax call for RunReport function work with downloadable excel files
             return Json(new { success = true });
         }
+        [Authorize]
         public async Task<ActionResult> RunReport(int reportId)
         {
             Models.Report report = await Models.Report.GetReportById(reportId);
@@ -179,6 +194,7 @@ namespace WarehouseManagementSystem.Controllers
             return File(stream, contentType, fileName);
         }
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult> SaveReport(string reportName, string reportQuery)
         {
             IdentityUser identityUser = await Models.User.GetCurrentUser();
@@ -204,6 +220,7 @@ namespace WarehouseManagementSystem.Controllers
 
         }
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult> GetScheduledReports()
         {
             List<Models.Report> reports = await Models.Report.GetReports();
@@ -218,6 +235,7 @@ namespace WarehouseManagementSystem.Controllers
             return Json(scheduledReports, JsonRequestBehavior.AllowGet);
         }
         [HttpDelete]
+        [Authorize]
         public async Task<ActionResult> DeleteScheduledReport(int scheduleId)
         {
             Models.Report.Schedule schedule = await Models.Report.Schedule.GetScheduleById(scheduleId);

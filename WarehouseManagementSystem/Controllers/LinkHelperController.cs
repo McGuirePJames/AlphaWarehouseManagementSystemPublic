@@ -6,12 +6,11 @@ using System.Web.Mvc;
 
 namespace WarehouseManagementSystem.Controllers
 {
-    public class HomeController : Controller
+    public class LinkHelperController : Controller
     {
-        [Authorize]
-        public ActionResult Home()
+        public RedirectResult GitHubLink()
         {
-            return View();
+            return Redirect("https://github.com/McGuirePJames/WarehouseManagementSystem");
         }
     }
 }

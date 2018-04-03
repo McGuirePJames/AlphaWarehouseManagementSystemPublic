@@ -9,10 +9,12 @@ namespace WarehouseManagementSystem.Controllers
 {
     public class DataEntryController : Controller
     {
+        [Authorize]
         public ActionResult Selection()
         {
             return View(@"~/Views/DataEntry/Selection.cshtml");
         }
+        [Authorize]
         public async Task<ActionResult> ProductEntry()
         {
             List<string> products = new List<string>();
