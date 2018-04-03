@@ -89,6 +89,14 @@
     background-color: #F4833B;
 }
 
+.navigation-option-container:nth-child(3) .navigation-option-icon-container {
+    background-color: #95C866;
+}
+
+.navigation-option-container:nth-child(4) .navigation-option-icon-container {
+    background-color: #8443c3;
+}
+
 a {
     color: black;
 }

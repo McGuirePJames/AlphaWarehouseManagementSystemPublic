@@ -17,7 +17,7 @@ body {
 
 @media (max-width: 991px) {
     .grid-item.height-small {
-        height: 190px;
+        height: 140px;
         padding-bottom: 15px;
         padding-top: 15px;
     }
@@ -82,8 +82,8 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom:0;
-        padding-bottom:0;
+        margin-bottom: 0;
+        padding-bottom: 0;
         height: 100%;
     }
 
@@ -103,7 +103,7 @@ body {
     }
 
     .action-container .action .row .col-sm-9 {
-        padding:0;
+        padding: 0;
     }
 
 .action-container .action .col-lg-5 {
@@ -176,7 +176,7 @@ body {
     border-bottom-left-radius: 8px;
     border-top-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    border-top-right-radius:0;
+    border-top-right-radius: 0;
     width: 80%;
 }
 
@@ -201,10 +201,11 @@ body {
     border-width: 2px;
     height: 96%;
     top: 2%;
-    padding-left:0;
-    padding-right:0;
+    padding-left: 0;
+    padding-right: 0;
     overflow-x: hidden;
 }
+
     #RoleTable .navigation-dropdown {
         -webkit-box-shadow: inset 5px 5px 5px 0px rgba(0,0,0,0.75);
         -moz-box-shadow: inset 5px 5px 5px 0px rgba(0,0,0,0.75);
@@ -212,9 +213,10 @@ body {
         margin-left: 0;
         margin-right: 0;
     }
+
     #RoleTable .level-one, #RoleTable .level-two {
-        margin-left:0;
-        margin-right:0;
+        margin-left: 0;
+        margin-right: 0;
         border-bottom: solid;
         border-width: 2px;
         cursor: pointer;
@@ -230,8 +232,8 @@ body {
     }
 
     #RoleTable .row p {
-        margin-bottom:0;
-        margin-top:0;
+        margin-bottom: 0;
+        margin-top: 0;
     }
 
     #RoleTable .row.collapse.show {
@@ -255,7 +257,6 @@ body {
     #RoleTable .level-two {
         padding-top: 10px;
         padding-bottom: 10px;
-
         color: black;
     }
 
@@ -263,44 +264,45 @@ body {
             border-bottom: solid;
             border-width: 2px;
         }
+
 .level-two p {
     padding-left: 60px;
 }
 
-    #RoleTable .cell {
-        padding-right:0;
-        /*padding-left: 20px;*/
-    }
+#RoleTable .cell {
+    padding-right: 0;
+    /*padding-left: 20px;*/
+}
 
-        /*#RoleTable .cell.row {
+/*#RoleTable .cell.row {
             padding-left: 40px;
         }*/
 
-    #RoleTable .table-header-row {
-        padding-bottom: 15px;
-        padding-top: 15px;
-        background-color: #06202A;
-        z-index: 200 !important;
-    }
+#RoleTable .table-header-row {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    background-color: #06202A;
+    z-index: 200 !important;
+}
 
 
-        #RoleTable .table-header-row p {
-            color: white;
-            display: flex;
-            height: 100%;
-            align-items: center;
-            font-size: 13pt;
-        }
-
-    #RoleTable .row-action-container {
+    #RoleTable .table-header-row p {
+        color: white;
         display: flex;
+        height: 100%;
         align-items: center;
-        justify-content: flex-end
+        font-size: 13pt;
     }
+
+#RoleTable .row-action-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end
+}
 
 @media (max-width: 768px) {
     #RoleTable .row-action-container {
-        padding-left:0;
+        padding-left: 0;
         margin-top: 20px;
         justify-content: flex-start;
     }
@@ -357,11 +359,12 @@ body {
             margin-left: 30px;
         }
 
-@media (min-width: 992px){
-    .container-slide{
+@media (min-width: 992px) {
+    .container-slide {
         padding-left: 15px;
     }
 }
+
 @media (max-width: 991px) {
     .table-header-row {
         display: none;
@@ -373,7 +376,7 @@ body {
         margin-left: 130px;
     }
 
-    
+
     .cell.row .container-slide:nth-child(2) .slide:before {
         position: absolute;
         content: "Create";
@@ -394,6 +397,7 @@ body {
         left: 85px;
         top: 8px;
     }
+
     .cell.row .container-slide:nth-child(5) .slide:before {
         position: absolute;
         content: "Delete";
@@ -413,8 +417,8 @@ body {
     border-radius: 2px;
     min-height: 125px;
     max-width: 350px;
-    padding-left:0;
-    padding-right:0;
+    padding-left: 0;
+    padding-right: 0;
 }
 
     #ConfirmationPopUp .row {
@@ -469,7 +473,7 @@ body {
             }
 
         #ConfirmationPopUp .container-answer p {
-            margin-bottom:0;
+            margin-bottom: 0;
             color: white;
             font-size: 17pt;
             font-weight: 300;
@@ -477,8 +481,8 @@ body {
 
     #ConfirmationPopUp .yes {
         background-color: #4CBC4E;
-        padding-bottom:0;
-        margin-bottom:0;
+        padding-bottom: 0;
+        margin-bottom: 0;
     }
 
     #ConfirmationPopUp .no {
@@ -500,3 +504,6 @@ body {
     .container-slide:nth-child(even) {
         background-color: orange;
     }*/
+.level-two.description p {
+    white-space: nowrap;
+}

@@ -3,10 +3,11 @@
     display: flex;
     justify-content: center;
     max-width: 1000px;
+    align-items: center;
 }
 
-.container-form {
-    margin-top: 20%;
+.main-contents-container {
+    margin-bottom: 100px;
 }
 
 .container-alerts {
@@ -24,5 +25,23 @@
 
 .center-component {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+}
+
+body {
+    background-color: white !important;
+}
+
+#ButtonLogin {
+    border-radius: 2px;
+    min-width: 100%;
+}
+
+.user-login-introduction p:first-child {
+    margin-bottom: 15px;
+
+}
+
+.user-login-introduction p {
+    margin-bottom: 0;
 }

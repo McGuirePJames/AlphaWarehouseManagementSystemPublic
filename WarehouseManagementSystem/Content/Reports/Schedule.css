@@ -68,6 +68,7 @@ html .main-contents-container {
 #ReportsListContainer {
     padding-left: 0;
     padding-right: 0;
+    max-height: 840px;
 }
 
     #ReportsListContainer p {
@@ -120,7 +121,7 @@ html .main-contents-container {
 
 @media (max-width: 576px) {
     .main-contents-container {
-        margin-top: 20px;
+
         display: flex;
         flex-direction: column;
         height: 100%;

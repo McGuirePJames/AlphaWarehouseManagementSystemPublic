@@ -11,11 +11,11 @@
 }
 
 @media (max-width:767px) {
-    .navigation-option-container:nth-child(3) {
+    .navigation-option-container:first-child {
         margin-top: 20px;
     }
 
-    .navigation-option-container:nth-child(4) {
+    .navigation-option-container:last-child {
         margin-top: 20px;
         margin-bottom: 20px;
     }
@@ -88,15 +88,13 @@
 .navigation-option-container:nth-child(2) .navigation-option-icon-container {
     background-color: #F4833B;
 }
-
 .navigation-option-container:nth-child(3) .navigation-option-icon-container {
     background-color: #95C866;
 }
 
 .navigation-option-container:nth-child(4) .navigation-option-icon-container {
-    background-color: #8443c3;
+    background-color: #CD0078;
 }
-
 a {
     color: black;
 }

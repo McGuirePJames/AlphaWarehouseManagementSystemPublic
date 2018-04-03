@@ -88,7 +88,9 @@
 .navigation-option-container:nth-child(2) .navigation-option-icon-container {
     background-color: #F4833B;
 }
-
+.navigation-option-container:nth-child(3) .navigation-option-icon-container {
+    background-color: #95C866;
+}
 a {
     color: black;
 }

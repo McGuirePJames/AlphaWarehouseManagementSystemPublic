@@ -44,13 +44,12 @@ main .row {
     border-right: solid;
     border-color: #EBEBEB;
     overflow-y: scroll;
-    height: 100%;
-    max-height: 820px;
+    max-height: 850px
 }
 
 @media(max-width: 991px) {
     #AvailableColumns {
-        max-height: 30%;
+        max-height: 500px;
     }
 
     #ReportParametersContainer {
@@ -451,7 +450,7 @@ main .row {
 }
 
 #ReportCodeEditor {
-    height: 309px;
+    height: 299px;
 }
 
     #ReportCodeEditor .ql-syntax {
@@ -493,8 +492,15 @@ html .hljs-keyword {
             background-color: #003C4D;
             color: white;
             border-radius: 2px;
-            height: 30px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
+            #ToolBar .ql-formats button svg {
+                margin-right: 10px;
+            }
 
             #ToolBar .ql-formats button:after {
                 content: "Click Me To Begin ";

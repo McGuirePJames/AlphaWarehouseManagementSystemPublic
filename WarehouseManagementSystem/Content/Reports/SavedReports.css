@@ -82,7 +82,7 @@
         }
 
             #ReportsSavedContainer .user-row .report-actions .report-action {
-                width: 30px;
+                min-width: 30px;
             }
 
                 #ReportsSavedContainer .user-row .report-actions .report-action:nth-child(2) {
@@ -112,28 +112,44 @@
             margin-left: 20px;
         }
 
-        #ReportsSavedContainer .user-row .btn-delete-report {
-            margin-bottom: 10px;
-            margin-top: 10px;
-        }
+@media (max-width: 768px) {
+    #ReportsSavedContainer {
+        min-height: auto;
+    }
 
-        #ReportsSavedContainer .user-row .btn-update-report {
-            margin-bottom: 10px;
+        #ReportsSavedContainer .user-row div:first-child p:first-child {
+            padding-top: 10px;
         }
+}
 
-        #ReportsSavedContainer .user-row .report-action {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0px;
-            border: solid;
-            border-width: 2px;
-            height: 30px;
-            width: 30px;
-            border-radius: 5px;
-            border-color: #666;
-        }
+@media (max-width: 575px) {
+    #ReportsSavedContainer {
+        margin-bottom: 20px;
+    }
+}
 
-            #ReportsSavedContainer .user-row .report-action:nth-child(2) {
-                margin-left: 10px !important;
-            }
+#ReportsSavedContainer .user-row .btn-delete-report {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#ReportsSavedContainer .user-row .btn-update-report {
+    margin-bottom: 10px;
+}
+
+#ReportsSavedContainer .user-row .report-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    border: solid;
+    border-width: 2px;
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    border-color: #666;
+}
+
+    #ReportsSavedContainer .user-row .report-action:nth-child(2) {
+        margin-left: 10px !important;
+    }
