@@ -84,22 +84,46 @@
         this.addAvailableItem(clickedEle.dataset.userId, clickedEle.dataset.userEmailaddress);
     }
     componentDidMount() {
-        fetch("/Reports/GetUsers")
-            .then(res => res.json())
-            .then(
-            (result) => {
+        $.ajax({
+            beforeSend: function () {
+                $('html').css('cursor', 'wait');
+            },
+            type: "GET",
+            url: "/Reports/GetUsers",
+            success: (response) => {
                 this.setState({
                     isLoaded: true,
-                    availableItems: result
+                    availableItems: response
                 });
             },
-            (error) => {
+            complete: function () {
+                $('html').css('cursor', 'default');
+            },
+            error: (xhr, status, error) => {
+                $('html').css('cursor', 'default');
+                var err = eval("(" + xhr.responseText + ")");
                 this.setState({
                     isLoaded: true,
-                    error
+                    error: err
                 });
             }
-            )
+        })
+        //fetch("/Reports/GetUsers")
+        //    .then(res => res.json())
+        //    .then(
+        //    (result) => {
+        //        this.setState({
+        //            isLoaded: true,
+        //            availableItems: result
+        //        });
+        //    },
+        //    (error) => {
+        //        this.setState({
+        //            isLoaded: true,
+        //            error
+        //        });
+        //    }
+        //    )
     }
     getSelectedItems() {
         return this.state.selectedItems;
@@ -107,9 +131,9 @@
     render() {
         const { error, isLoaded, availableItems } = this.state;
         if (error) {
-            return <div>Error: {error.message}</div>;
+            return (<div>Error: {error.message}</div>);
         } else if (!isLoaded) {
-            return <div></div>;
+            return (<div></div>);
         } else {
             return (
                 <div id="ContainerUserNotificationDropdown"
@@ -178,22 +202,46 @@ class ScheduledReports extends React.Component {
 
     }
     componentDidMount() {
-        fetch("/Reports/GetScheduledReports")
-            .then(res => res.json())
-            .then(
-            (result) => {
+        $.ajax({
+            beforeSend: function () {
+                $('html').css('cursor', 'wait');
+            },
+            type: "GET",
+            url: "/Reports/GetScheduledReports",
+            success: (response) => {
                 this.setState({
                     isLoaded: true,
-                    reports: result
+                    reports: response
                 });
             },
-            (error) => {
+            complete: function () {
+                $('html').css('cursor', 'default');
+            },
+            error: (xhr, status, error) => {
+                $('html').css('cursor', 'default');
+                var err = eval("(" + xhr.responseText + ")");
                 this.setState({
                     isLoaded: true,
-                    error
+                    error: err
                 });
             }
-            )
+        })
+        //fetch("/Reports/GetScheduledReports")
+        //    .then(res => res.json())
+        //    .then(
+        //    (result) => {
+        //        this.setState({
+        //            isLoaded: true,
+        //            reports: result
+        //        });
+        //    },
+        //    (error) => {
+        //        this.setState({
+        //            isLoaded: true,
+        //            error
+        //        });
+        //    }
+        //    )
     }
     addReport(scheduleId) {
         var newArray = this.state.reports;
@@ -208,12 +256,11 @@ class ScheduledReports extends React.Component {
         var scheduleId = clickedEle.dataset.scheduleId;
         var hangfireJobId = clickedEle.dataset.hangfireId;
 
-        //var data = JSON.stringify({ "scheduleId": scheduleId, "hangfireJobId": hangfireJobId });
         var ajaxRequest = $.ajax({
             beforeSend: function (e) {
                 $('html').css('cursor', 'wait');
             },
-            url: "/Reports/DeleteScheduledReport/" + '?' + $.param({ "scheduleId": scheduleId}),
+            url: "/Reports/DeleteScheduledReport/" + '?' + $.param({ "scheduleId": scheduleId }),
             type: "DELETE",
             //dataType: "json",
             success: function (response) {
@@ -235,16 +282,16 @@ class ScheduledReports extends React.Component {
 
             }.bind(this),
             complete: function (e) {
-                $('html').css('cursor', 'default');            
+                $('html').css('cursor', 'default');
             }
         });
     }
     render() {
         const { error, isLoaded, availableItems } = this.state;
         if (error) {
-            return <div>Error: {error.message}</div>;
+            return (<div>Error: {error.message}</div>);
         } else if (!isLoaded) {
-            return <div>
+            return (<div>
                 <div className="list-item-group row">
                     <p>Daily</p>
                 </div>
@@ -254,11 +301,11 @@ class ScheduledReports extends React.Component {
                 <div className="list-item-group row">
                     <p>Monthly</p>
                 </div>
-            </div>
+            </div>)
         } else {
             return (
 
-                <div>
+                <div id="ReactRoot">
                     <div className="list-item-group collapsed" href="#DailyScheduledReports" data-toggle="collapse" aria-expanded="false">
                         <p>Daily</p>
                     </div>

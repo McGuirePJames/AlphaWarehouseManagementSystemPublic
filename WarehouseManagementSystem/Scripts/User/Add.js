@@ -1,4 +1,5 @@
-﻿$(document).ready(function (e) {
+﻿
+$(document).ready(function (e) {
     document.getElementById('ButtonAddUser').addEventListener("click", createUser);
 });
 
@@ -31,7 +32,7 @@ function ajaxCreateUser(user, employee) {
                 alert("Finished Success");
             }
             else {
-                alert("Finished Failure");
+                alert(response.ResponseText);
             }
         },
         complete: function () {

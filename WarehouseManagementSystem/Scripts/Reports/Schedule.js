@@ -55,21 +55,21 @@
         resetFrequencySelectors();
         clickedEle.classList.add('active');
     });
-    $(document).on('click', '#FrequencyRunImmediately', function (e) {
-        var clickedEle = e.target;
+    //$(document).on('click', '#FrequencyRunImmediately', function (e) {
+    //    var clickedEle = e.target;
 
-        if (clickedEle.checked == true) {
-            document.getElementById('FrequencySelectDateTime').disabled = true;
-            document.getElementById('FrequencySelectDateTime').value = "";
-        }
-        else {
-            document.getElementById('FrequencySelectDateTime').disabled = false;
-        }
-    });
+    //    if (clickedEle.checked == true) {
+    //        document.getElementById('FrequencySelectDateTime').disabled = true;
+    //        document.getElementById('FrequencySelectDateTime').value = "";
+    //    }
+    //    else {
+    //        document.getElementById('FrequencySelectDateTime').disabled = false;
+    //    }
+    //});
     $(document).on('click', '#CreateScheduledReport', function (e) {
         var schedule = createSchedule();
         if (schedule.StartImmediately) {
-            ajaxCreateScheduledReport(schedule);
+            var ajaxRequestCreateScheduledReport = ajaxCreateScheduledReport(schedule);
         }
         else {
             ajaxCreateDelayedJob(schedule);
@@ -81,9 +81,6 @@
         dateFormat: "Y-m-d H:i",
     });
 });
-
-
-
 
 
 class Report {
@@ -147,6 +144,7 @@ function ajaxCreateDelayedJob(schedule) {
 }
 function ajaxCreateScheduledReport(schedule) {
     let data = JSON.stringify(schedule);
+
     $.ajax({
         beforeSend: function () {
             $('html').css('cursor', 'wait');
@@ -159,6 +157,32 @@ function ajaxCreateScheduledReport(schedule) {
         success: function (response) {
             if (response.success) {
                 ScheduledReportViewer.addReport(response.responseText);
+                RunScheduledReport(response.responseText);
+                alert("Finished Success");
+            }
+            else {
+                alert(response.responseText);
+            }
+        },
+        complete: function () {
+            $('html').css('cursor', 'default');
+        }
+    })
+
+}
+function RunScheduledReport(scheduleId) {
+    let data = JSON.stringify({ 'scheduleId': scheduleId });
+    $.ajax({
+        beforeSend: function () {
+            $('html').css('cursor', 'wait');
+        },
+        type: "POST",
+        url: "/Reports/RunScheduledReport",
+        data: data,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            if (response.success) {
                 alert("Finished Success");
             }
             else {
@@ -170,7 +194,6 @@ function ajaxCreateScheduledReport(schedule) {
         }
     });
 }
-
 
 function createSchedule(scheduleId) {
     var reportId = document.getElementById('FrequencyDropdown').dataset.reportId;
@@ -191,15 +214,12 @@ function createSchedule(scheduleId) {
     report.ReportName = document.getElementById('FrequencyDropdown').getElementsByTagName('p')[0].innerHTML;
 
     schedule.Report = report;
+    //converts to utc
+    //var selectedDateTime = new Date(document.getElementById('FrequencySelectDateTime').value);
+    //schedule.StartDate = new Date(selectedDateTime.getTime() + (selectedDateTime.getTimezoneOffset() * 60000));
+    schedule.StartDate = new Date(document.getElementById('FrequencySelectDateTime').value);
+    schedule.StartImmediately = document.getElementById('FrequencyRunImmediately').checked;
 
-
-    if (document.getElementById('FrequencySelectDateTime').value == "") {
-        schedule.StartImmediately = true;
-    }
-    else {
-        schedule.StartImmediately = false;
-        schedule.StartDate = document.getElementById('FrequencySelectDateTime').value;
-    }
     return schedule;
 }
 function getUsersToNotify() {
