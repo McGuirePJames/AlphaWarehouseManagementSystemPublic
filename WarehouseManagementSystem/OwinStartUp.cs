@@ -9,12 +9,17 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Hangfire;
 
+
+
+
+
 [assembly: OwinStartup(typeof(WarehouseManagementSystem.OwinStartUp))]
 
 namespace WarehouseManagementSystem
 {
     public class OwinStartUp
     {
+
         public void Configuration(IAppBuilder app)
         {
             GlobalConfiguration.Configuration.UseSqlServerStorage(Models.Database.GetConnectionString());
@@ -23,7 +28,7 @@ namespace WarehouseManagementSystem
             app.UseHangfireServer();
 
 
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[""].ToString();
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
 
             app.CreatePerOwinContext(() =>
                 new IdentityDbContext(connectionString));
@@ -35,6 +40,7 @@ namespace WarehouseManagementSystem
                     UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(cont.Get<UserStore<IdentityUser>>());
                     userManager.RegisterTwoFactorProvider("SMS", new PhoneNumberTokenProvider<IdentityUser> { MessageFormat = "Token: {0}" });
                     userManager.UserTokenProvider = new DataProtectorTokenProvider<IdentityUser>(opt.DataProtectionProvider.Create());
+
 
                     userManager.EmailService = new WarehouseManagementSystem.Models.EmailService();
 
@@ -56,7 +62,7 @@ namespace WarehouseManagementSystem
             {
                 //ExpireTimeSpan = TimeSpan.FromMinutes(5),
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Home/Home"),
+                LoginPath = new PathString("/User/Login"),
                 SlidingExpiration = true //if user has no communication with server                               
             });
 
