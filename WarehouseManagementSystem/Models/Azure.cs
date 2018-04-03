@@ -13,7 +13,7 @@ namespace WarehouseManagementSystem.Models
     {
         internal static string GetStorageConnectionString()
         {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[""].ToString();
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[""]ToString();
 
             return connectionString;
         }

@@ -20,7 +20,7 @@ namespace WarehouseManagementSystem.Models
         public string Password { get; set; }
         public List<Models.UserRoles> UserRoles { get; set; }
         public Models.Employee Employee { get; set; }
-        public string ProfilePicturePath { get; set; }
+        public string ProfilePicturePath { get; set; }       
 
         public User()
         {
@@ -107,7 +107,7 @@ namespace WarehouseManagementSystem.Models
             {
                 SignInStatus signInStatus = await signInManager.PasswordSignInAsync(user.EmailAddress, user.Password, true, true);
 
-                bool isEmailConfirmed = await userManager.IsEmailConfirmedAsync(identityUser.Id);
+                //bool isEmailConfirmed = await userManager.IsEmailConfirmedAsync(identityUser.Id);
 
                 //if (!isEmailConfirmed)
                 //{
@@ -279,6 +279,16 @@ namespace WarehouseManagementSystem.Models
             string userName = HttpContext.Current.User.Identity.Name;
             IdentityUser identityUser = await userManager.FindByNameAsync(userName);
 
+
+            return identityUser;
+        }
+        internal static IdentityUser GetCurrentUserSynchronous()
+        {
+            Microsoft.Owin.IOwinContext owinContext = System.Web.HttpContext.Current.GetOwinContext();
+            UserManager<IdentityUser> userManager = owinContext.GetUserManager<UserManager<IdentityUser>>();
+
+            string userName = HttpContext.Current.User.Identity.Name;
+            IdentityUser identityUser = userManager.FindByName(userName);
 
             return identityUser;
         }
@@ -517,5 +527,6 @@ namespace WarehouseManagementSystem.Models
             }
             return response;
         }
+
     }
 }

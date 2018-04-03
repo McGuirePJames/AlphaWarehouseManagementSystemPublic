@@ -33,7 +33,7 @@ namespace WarehouseManagementSystem.Models
         {
             List<Models.Excel.Workbook.Worksheet.Row> rows = new List<Models.Excel.Workbook.Worksheet.Row>();
 
-            using (SqlConnection conn = new SqlConnection(WarehouseManagementSystem.Models.Database.GetConnectionString()))
+            using (SqlConnection conn = new SqlConnection(WarehouseManagementSystem.Models.Database.GetConnectionStringReadOnly()))
             {
                 using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
                 {

@@ -11,7 +11,7 @@ namespace WarehouseManagementSystem.Models
     {
         public static string GetAPIKey()
         {
-            return System.Configuration.ConfigurationManager.AppSettings[""].ToString();
+            return System.Configuration.ConfigurationManager.AppSettings["APIKeySendGrid"].ToString();
         }
         public class Message
         {

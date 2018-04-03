@@ -11,6 +11,7 @@ namespace WarehouseManagementSystem.Models
     public class Job
     {
         public int Id { get; set; }
+        public string UserId { get; set; }
         public string JobDescription { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
@@ -20,8 +21,10 @@ namespace WarehouseManagementSystem.Models
             List<Models.Job> jobs = new List<Models.Job>();
 
             string sqlQuery =
-                            @"SELECT Jobs.JobsId, Jobs.JobDescription, Jobs.CreatedDate, Jobs.ModifiedDate " +
-                            @"FROM Jobs ";
+                        @"SELECT Jobs.JobsId, Jobs.JobDescription, Jobs.CreatedDate, Jobs.ModifiedDate " +
+                        @"FROM Jobs ";
+                        //@"INNER JOIN Employees " +
+                        //@"ON Jobs.JobsId = Employees.ShiftsId ";
 
             using (SqlConnection conn = new SqlConnection(WarehouseManagementSystem.Models.Database.GetConnectionString()))
             {
@@ -38,6 +41,7 @@ namespace WarehouseManagementSystem.Models
                         job.JobDescription = rdr["JobDescription"].ToString();
                         job.CreatedDate = Convert.ToDateTime(rdr["CreatedDate"]);
                         job.ModifiedDate = Convert.ToDateTime(rdr["ModifiedDate"]);
+                        //job.UserId = rdr["Id"].ToString();
                         jobs.Add(job);
                     }
                 }

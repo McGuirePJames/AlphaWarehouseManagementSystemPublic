@@ -20,26 +20,25 @@ namespace WarehouseManagementSystem.Models
     {
         public static void CreateDelayedJob(string recurringJobId, int scheduleId, DateTime startDate, string frequency)
         {
-
-
+            //BackgroundJob.Schedule(() => CreateScheduledReport(recurringJobId, scheduleId, frequency), new DateTimeOffset(startDate.Year, startDate.Month, startDate.Day, startDate.Hour, startDate.Minute, 0, 0, TimeSpan.From));
             double minutesToWait = (startDate - DateTime.Now).Minutes;
-            BackgroundJob.Schedule(() => CreateScheduledReport(recurringJobId, scheduleId, frequency), TimeSpan.FromMinutes(minutesToWait));
-
+            BackgroundJob.Schedule(() => CreateScheduledReport(recurringJobId, scheduleId, frequency, startDate), TimeSpan.FromMinutes(minutesToWait));
+            //BackgroundJob.Schedule(() => CreateScheduledReport(recurringJobId, scheduleId, frequency), minutesToWait));
 
         }
-        public static void CreateScheduledReport(string recurringJobId, int scheduleId, string frequency)
+        public static void CreateScheduledReport(string recurringJobId, int scheduleId, string frequency, DateTime startDate)
         {
             if (frequency == "Daily")
             {
-                RecurringJob.AddOrUpdate(recurringJobId, () => RunScheduledReport(scheduleId), Cron.Daily);
+                RecurringJob.AddOrUpdate(recurringJobId, () => RunScheduledReport(scheduleId), string.Format("{0} {1} * * *", startDate.Minute.ToString(), startDate.Hour.ToString()));
             }
             else if(frequency == "Weekly")
             {
-                RecurringJob.AddOrUpdate(recurringJobId, () => RunScheduledReport(scheduleId), Cron.Weekly);
+                RecurringJob.AddOrUpdate(recurringJobId, () => RunScheduledReport(scheduleId), string.Format("{0} {1} * * {2}", startDate.Minute.ToString(), startDate.Hour.ToString(), Convert.ToString((int)startDate.DayOfWeek)));
             }
             else if(frequency == "Monthly")
             {
-                RecurringJob.AddOrUpdate(recurringJobId, () => RunScheduledReport(scheduleId), Cron.Monthly);
+                RecurringJob.AddOrUpdate(recurringJobId, () => RunScheduledReport(scheduleId), string.Format("{0} {1} {2} * *", startDate.Minute.ToString(), startDate.Hour.ToString(), Convert.ToString((int)startDate.Day)));
             }
 
         }
@@ -71,7 +70,7 @@ namespace WarehouseManagementSystem.Models
             foreach (Report.Schedule.UserNotifications userToNotify in report._Schedule.UsersToNotify)
             {
                 var client = new SendGridClient(key);
-                var from = new EmailAddress("mcguirepjamessendgrid@gmail.com", "Example User");
+                var from = new EmailAddress("", "Example User");
                 var subject = report.ReportName;
                 var to = new EmailAddress(userToNotify.EmailAddress, " ");
                 var plainTextContent = "";

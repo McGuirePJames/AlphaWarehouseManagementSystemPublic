@@ -11,6 +11,7 @@ namespace WarehouseManagementSystem.Models
     public class Shift
     {
         public int Id { get; set; }
+        public string UserId { get; set; }
         public string ShiftDescription { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
@@ -20,8 +21,10 @@ namespace WarehouseManagementSystem.Models
             List<Models.Shift> shifts = new List<Models.Shift>();
 
             string sqlQuery =
-                            @"SELECT Shifts.ShiftsId, Shifts.ShiftDescription, Shifts.CreatedDate, Shifts.ModifiedDate " +
-                            @"FROM Shifts ";
+                    @"SELECT Shifts.ShiftsId, Shifts.ShiftDescription, Shifts.CreatedDate, Shifts.ModifiedDate " +
+                    @"FROM Shifts ";
+                    //@"INNER JOIN Employees " +
+                    //@"ON Shifts.ShiftsId = Employees.ShiftsId ";
 
             using (SqlConnection conn = new SqlConnection(WarehouseManagementSystem.Models.Database.GetConnectionString()))
             {
@@ -38,6 +41,7 @@ namespace WarehouseManagementSystem.Models
                         shift.ShiftDescription = rdr["ShiftDescription"].ToString();
                         shift.CreatedDate = Convert.ToDateTime(rdr["CreatedDate"]);
                         shift.ModifiedDate = Convert.ToDateTime(rdr["ModifiedDate"]);
+                        //shift.UserId = rdr["Id"].ToString();
                         shifts.Add(shift);
                     }
                 }
