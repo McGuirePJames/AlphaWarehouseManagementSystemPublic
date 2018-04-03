@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link href="~/Content/Home/Home.css" rel="stylesheet" />
-    <title>Home - Navigation</title>
+    <link href="~/Content/Reports/Home.css" rel="stylesheet" />
+    <title>Report - Navigation</title>
 </head>
 <html lang="en">
 <body>
@@ -23,58 +23,44 @@
         @Html.Partial(@"~/Views/Shared/NavigationSide.cshtml")
         <div class="row navigation-options col-sm-8 main-contents-container">
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 navigation-option-container">
-                <a class="col-12 navigation-option" href="/User/Home/">
+                <a class="col-12 navigation-option" href="/Reports/Add/">
                     <div class="navigation-option-icon-container text-center">
                         <i class="fas fa-users navigation-option-navigation-icon fa-5x"></i>
                     </div>
                     <div class="navigation-option-title-container">
-                        <h2 class="text-center">Users</h2>
+                        <h2 class="text-center">Create</h2>
                     </div>
                     <div class="navigation-option-description-container">
-                        <p class="text-center">Create and manage users that can access this application</p>
+                        <p class="text-center">Create a report</p>
                     </div>
                 </a>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 navigation-option-container">
-                <a class="col-12 navigation-option" href="/Roles/Home/">
+                <a class="col-12 navigation-option" href="/Reports/SavedReports/">
                     <div class="navigation-option-icon-container text-center">
                         <i class="fas fa-chart-bar fa-5x navigation-option-navigation-icon"></i>
                     </div>
                     <div class="navigation-option-title-container">
-                        <h2 class="text-center">Roles</h2>
+                        <h2 class="text-center">Manage</h2>
                     </div>
                     <div class="navigation-option-description-container">
-                        <p class="text-center">Create and manage roles that can be attached to users</p>
+                        <p class="text-center">Run, delete, and update existing reports</p>
                     </div>
                 </a>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 navigation-option-container">
-                <a class="col-12 navigation-option" href="#">
+                <a class="col-12 navigation-option" href="/Reports/Schedule/">
                     <div class="navigation-option-icon-container text-center">
                         <i class="fas fa-database navigation-option-navigation-icon fa-5x"></i>
                     </div>
                     <div class="navigation-option-title-container">
-                        <h2 class="text-center">Data Entry</h2>
+                        <h2 class="text-center">Schedule</h2>
                     </div>
                     <div class="navigation-option-description-container">
-                        <p class="text-center">Data Entry </p>
+                        <p class="text-center">Attach schedules to existing reports</p>
                     </div>
                 </a>
             </div>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 navigation-option-container">
-                <a class="col-12 navigation-option" href="/Reports/Home/">
-                    <div class="navigation-option-icon-container text-center">
-                        <i class="fas fa-chart-bar fa-5x navigation-option-navigation-icon"></i>
-                    </div>
-                    <div class="navigation-option-title-container">
-                        <h2 class="text-center">Reports</h2>
-                    </div>
-                    <div class="navigation-option-description-container">
-                        <p class="text-center">Manage a variety of reports tailored to fit your needs </p>
-                    </div>
-                </a>
-            </div>
-
         </div>
     </main>
     @Html.Partial("~/Views/Shared/Footer.cshtml")

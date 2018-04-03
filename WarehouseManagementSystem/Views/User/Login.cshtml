@@ -15,13 +15,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link href="~/Content/User/Login.css" rel="stylesheet" />
     <script src="~/Scripts/User/Login.js"></script>
-    <title>Login</title>
+    <title>User - Login</title>
 </head>
 <html lang="en">
 <body>
     @Html.Partial("~/Views/Shared/NavigationBar.cshtml")
     <main class="container-fluid">
-        <div class="container-form col-sm-6 main-contents-container">
+        <div class="container-form col-sm-5 main-contents-container">
             <div>
                 <label class="form-label display-4">Login</label>
             </div>
@@ -36,9 +36,17 @@
             <div class="center-component">
                 <button id="ButtonLogin" class="btn btn-primary col-sm-6" type="button">Login</button>
             </div>
+            <div>
+                <a href="/User/ForgotPassword/">Forgot Password</a>
+            </div>
             <div class="container-alerts">
                 <p id="LoginError" class="alert alert-danger col-sm-12 text-center"></p>
                 <p id="LoginSuccess" class="alert alert-success col-sm-12 text-center"></p>
+            </div>
+            <div class="user-login-introduction">
+                <p>The purpose of this web application is entirely for demonstration of basic to intermediate concepts.  It was created using a multitude of languages and frameworks. Further details and the source code can be found on @Html.ActionLink("GitHub Profile", "GitHubLink", "LinkHelper") . Feel free to use the account below to login and utilize all the features that this application has to offer.  If you have any questions, feel free to send me an email at mcguirepjames@gmail.com.   </p>
+                <p><b>Username: </b> AlphaWMSGuest@gmail.com</p>
+                <p><b>Password: </b> A$PSkier!2018</p>
             </div>
         </div>
     </main>
